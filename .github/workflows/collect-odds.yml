@@ -1,0 +1,48 @@
+name: Collect OddsHarvester snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      league:
+        description: OddsHarvester league slug
+        required: true
+        default: england-premier-league
+      date:
+        description: Date in YYYYMMDD; blank means today in runner timezone
+        required: false
+        default: ''
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install OddsHarvester and Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install oddsharvester
+          python -m playwright install --with-deps chromium
+      - name: Collect upcoming 1X2 odds
+        env:
+          LEAGUE: ${{ inputs.league }}
+          DATE: ${{ inputs.date }}
+        run: |
+          mkdir -p data/raw data/normalized
+          if [ -n "$DATE" ]; then
+            oddsharvester upcoming -s football -l "$LEAGUE" -d "$DATE" -m 1x2 --headless -f json -o data/raw/odds.json
+          else
+            oddsharvester upcoming -s football -l "$LEAGUE" -m 1x2 --headless -f json -o data/raw/odds.json
+          fi
+          python tools/odds_adapter.py data/raw/odds.json data/normalized/odds.json
+      - name: Commit normalized snapshot
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/normalized/odds.json
+          git diff --cached --quiet || git commit -m "chore: update OddsHarvester snapshot"
+          git push

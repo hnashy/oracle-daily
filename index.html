@@ -1652,8 +1652,39 @@ function predictMatch(state,m){
   return calculateEnsemblePrediction(eloP,dcP,state.w);
 }
 
-const S={all:[],cur:0,from:'live',at:0,notes:[],dates:[],rounds:[],idx:0,preds:{},state:null,bt:null,busy:false,robust:null,robBusy:false,league:'en.1'};
+const S={all:[],cur:0,from:'live',at:0,notes:[],dates:[],rounds:[],idx:0,preds:{},state:null,bt:null,busy:false,robust:null,robBusy:false,league:'en.1',odds:{}};
 function lgInfo(){return LEAGUES[S.league]||LEAGUES['en.1']}
+function normalizeTeamKey(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\b(afc|fc|cf|sc)\b/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function oddsKey(home,away,kickoff){
+  const date=kickoff?new Date(kickoff).toISOString().slice(0,10):'';
+  return date+'|'+normalizeTeamKey(home)+'|'+normalizeTeamKey(away);
+}
+async function loadOdds(){
+  try{
+    const r=await fetch('data/normalized/odds.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('odds '+r.status);
+    const j=await r.json(); S.odds={};
+    (Array.isArray(j)?j:(j.matches||[])).forEach(x=>{
+      if(x&&x.home_team&&x.away_team&&x.kickoff_utc&&x.odds)S.odds[oddsKey(x.home_team,x.away_team,x.kickoff_utc)]=x;
+    });
+  }catch(e){S.odds={};}
+}
+function oddsForMatch(m){return S.odds[oddsKey(m.h,m.a,new Date(m.ts).toISOString())]||null}
+function marketProbabilities(odds){
+  const q={h:1/Number(odds.h),d:1/Number(odds.d),a:1/Number(odds.a)};
+  const total=q.h+q.d+q.a;
+  return {h:q.h/total,d:q.d/total,a:q.a/total,overround:total-1};
+}
+function expectedValue(p,d){return Number.isFinite(p)&&Number.isFinite(d)&&d>1?p*d-1:null}
+function oddsBlock(m,p){
+  const o=oddsForMatch(m); if(!o||!o.odds||m.ts<=Date.now())return '';
+  const q=marketProbabilities(o.odds), ev={h:expectedValue(p.h,o.odds.h),d:expectedValue(p.d,o.odds.d),a:expectedValue(p.a,o.odds.a)};
+  const fmt=x=>x==null?'—':(x*100).toFixed(1)+'%';
+  const market='السوق '+fmt(q.h)+' / '+fmt(q.d)+' / '+fmt(q.a);
+  const values='EV '+fmt(ev.h)+' / '+fmt(ev.d)+' / '+fmt(ev.a);
+  const age=Math.max(0,(m.ts-Date.parse(o.scraped_at_utc))/60000);
+  return '<div class="note-line">أسعار 1X2 قبل المباراة · '+market+' · '+values+' · هامش '+fmt(q.overround)+' · قبل '+Math.round(age)+' دقيقة</div>';
+}
 function R(t){const e=S.state&&S.state.elo.get(t);return e?(e.home+e.away)/2:NEWC}
 function venue(t){const e=S.state&&S.state.elo.get(t);return e?e:{home:NEWC,away:NEWC}}
 
@@ -1681,11 +1712,11 @@ async function loadData(){
   const res=await Promise.allSettled(SEASONS.map((s,i)=>fetchSeason(i,S.league)));
   const got={};res.forEach((x,i)=>{if(x.status==='fulfilled'&&x.value.length)got[i]=x.value});
   const cache=sGet(kCache(),null);const keys=Object.keys(got);
-  if(!keys.length){if(!cache||!cache.seasons)return{ok:false};assemble(cache.seasons,'cache',cache.at);return{ok:true,from:'cache'}}
+  if(!keys.length){if(!cache||!cache.seasons)return{ok:false};assemble(cache.seasons,'cache',cache.at);await loadOdds();return{ok:true,from:'cache'}}
   const seasons=Object.assign({},got);
   if(cache&&cache.seasons)Object.keys(cache.seasons).forEach(k=>{if(!seasons[k])seasons[k]=cache.seasons[k]});
   sSet(kCache(),{at:Date.now(),seasons:seasons});
-  assemble(seasons,'live',Date.now());return{ok:true,from:'live'};
+  assemble(seasons,'live',Date.now());await loadOdds();return{ok:true,from:'live'};
 }
 
 function roundKey(m){
@@ -1788,10 +1819,10 @@ function statusOf(m,now){
 function card(m){const now=Date.now(),pred=S.preds[mid(m)],st=statusOf(m,now);
 const score=m.gh!==null?'<div class="score-text">'+m.gh+' - '+m.ga+'</div>':'';
 let body='';
-if(pred){const p={h:pred.ph,d:pred.pd,a:pred.pa,ou:pred.ou,btts:pred.btts,lh:pred.lh,la:pred.la};let mark='<span class="chip lock">مقفل</span>';
+if(pred){const p={h:pred.ph,d:pred.pd,a:pred.pa,ou:pred.ou,btts:pred.btts,lh:pred.lh,la:pred.la,context:pred.ctx||null};let mark='<span class="chip lock">مقفل</span>';
 if(pred.res)mark=pred.res.hit?'<span class="chip ok">أصاب</span>':'<span class="chip bad">أخطأ</span>';
-body=bar(p)+confidenceBar(p)+contextLine(p.context||null)+markets(p)+'<div class="pick-row"><span>المفضّل للعرض فقط: <b>'+esc(pickLabel(m,pred.pick))+'</b></span>'+mark+'</div>'}
-else if(m.ts>now&&S.state){const p=predictMatch(S.state,m);body=bar(p)+confidenceBar(p)+markets(p)+'<div class="pick-row"><span>المفضّل للعرض فقط: <b>'+esc(pickLabel(m,pickOf(p)))+'</b></span><span class="chip">تقدير مؤقت غير مقفل</span></div>'}
+body=bar(p)+confidenceBar(p)+contextLine(p.context||null)+oddsBlock(m,p)+markets(p)+'<div class="pick-row"><span>المفضّل للعرض فقط: <b>'+esc(pickLabel(m,pred.pick))+'</b></span>'+mark+'</div>'}
+else if(m.ts>now&&S.state){const p=predictMatch(S.state,m);body=bar(p)+confidenceBar(p)+contextLine(p.context||null)+oddsBlock(m,p)+markets(p)+'<div class="pick-row"><span>المفضّل للعرض فقط: <b>'+esc(pickLabel(m,pickOf(p)))+'</b></span><span class="chip">تقدير مؤقت غير مقفل</span></div>'}
 else body='<div class="pick-row"><span class="chip">لا يوجد توقع محفوظ (بدأت المباراة قبل التحليل)</span></div>';
 return '<div class="match-card"><div class="round-tag">'+esc(roundAr(m.r))+'</div><div class="teams-row"><div class="team-info"><div class="team-logo-placeholder">'+esc(m.h.slice(0,3).toUpperCase())+'</div><span class="team-name">'+esc(nm(m.h))+'</span></div><div class="vs-center"><span class="time-text">'+algTime(m.ts)+'</span><span class="league-text">'+esc(lgInfo().short)+'</span>'+score+'</div><div class="team-info"><div class="team-logo-placeholder">'+esc(m.a.slice(0,3).toUpperCase())+'</div><span class="team-name">'+esc(nm(m.a))+'</span></div></div><div class="status-row"><span class="status-pill '+st.c+'">'+st.icon+st.t+'</span></div>'+body+'</div>'}
 
