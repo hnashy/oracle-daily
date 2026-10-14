@@ -9,13 +9,30 @@ oddsharvester upcoming -s football -l england-premier-league \
   -m 1x2 --headless -f json -o data/raw/odds.json
 ```
 
-2. طبّع البيانات:
+2. طبّع البيانات القادمة:
 
 ```bash
 python3 tools/odds_adapter.py data/raw/odds.json data/normalized/odds.json
 ```
 
-3. افتح ORACLE عبر خادم HTTP، وليس `file://`:
+3. للاختبار التاريخي الزمني، اجمع حركة الأسعار:
+
+```bash
+uv run oddsharvester historic -s football \
+  -l england-premier-league --season 2024-2025 \
+  --max-pages 1 -m 1x2 --odds-history --headless \
+  -f json -o data/raw/epl_2024_2025_odds_history_sample.json
+```
+
+ثم شغّل:
+
+```bash
+node tools/odds_history_backtest.js \
+  data/raw/epl_2024_2025_odds_history_sample.json \
+  reports/odds_backtest.json
+```
+
+4. افتح ORACLE عبر خادم HTTP، وليس `file://`:
 
 ```bash
 python3 -m http.server 8000
@@ -25,10 +42,11 @@ python3 -m http.server 8000
 
 ## الحماية من التسرب
 
-- يجب أن يحتوي كل سجل على `kickoff_utc` و`scraped_at_utc`.
+- يجب أن يحتوي كل سجل على `kickoff_utc` و`scraped_at_utc` عند استخدام المحول القادم.
 - المحول يسقط السجل إذا كان `scraped_at_utc >= kickoff_utc`.
-- لا تُستخدم أسعار ما بعد البداية في الاختبار التاريخي.
-- الأسعار الحالية لا تُخلط مع سجل النتائج التاريخية.
+- في الاختبار التاريخي، يختار `odds_history_backtest.js` `opening_odds` أو آخر نقطة تاريخية timestamp أصغر من kickoff لكل شركة.
+- لا تُستخدم الأسعار الحالية التي جُمعت بعد المباراة.
+- لا تُستخدم النتيجة إلا بعد إنشاء توقع المباراة وحساب الاحتمالات.
 
 ## الاحتمالات وEV
 
