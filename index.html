@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#3b82f6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ORACLE Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-body: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --accent-main: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.12);
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+  --success: #10b981;
+  --success-soft: rgba(16, 185, 129, 0.12);
+  --warning: #f59e0b;
+  --warning-soft: rgba(245, 158, 11, 0.12);
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.12);
+  --border: #e2e8f0;
+  --border-soft: #f1f5f9;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-blur: blur(16px);
+  --c-h: #3b82f6;
+  --c-d: #94a3b8;
+  --c-a: #f97316;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme="dark"] {
+  --bg-body: #0b1220;
+  --bg-card: #151e2e;
+  --bg-elevated: #1a2438;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-main: #60a5fa;
+  --accent-soft: rgba(96, 165, 250, 0.15);
+  --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.15);
+  --warning: #fbbf24;
+  --warning-soft: rgba(251, 191, 36, 0.15);
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.15);
+  --border: #243044;
+  --border-soft: #1a2438;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.35);
+  --nav-bg: rgba(21, 30, 46, 0.92);
+  --c-h: #60a5fa;
+  --c-d: #64748b;
+  --c-a: #fb923c;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Tajawal', system-ui, -apple-system, sans-serif;
+  background: var(--bg-body);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  position: relative;
+  background: var(--bg-body);
+}
+
+/* ── Header ── */
+header {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 18px 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+  z-index: 20;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  position: relative;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-area h1 {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.logo-area span {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle, .settings-btn {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+  backdrop-filter: blur(8px);
+}
+
+.theme-toggle:active, .settings-btn:active {
+  transform: scale(0.92);
+}
+
+.theme-toggle:focus-visible,
+.settings-btn:focus-visible,
+.btn:focus-visible,
+.nav-btn:focus-visible {
+  outline: 2.5px solid var(--warning);
+  outline-offset: 3px;
+}
+
+.icon-sun, .icon-moon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.settings-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hide-icon {
+  display: none !important;
+}
+
+/* ── Settings Modal ── */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 300;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.settings-overlay.open {
+  display: flex;
+}
+
+.settings-panel {
+  background: var(--bg-card);
+  width: 100%;
+  max-width: 480px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 20px 18px calc(24px + var(--safe-bottom));
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.settings-header h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.settings-close {
+  background: var(--bg-body);
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.settings-close svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.settings-field {
+  margin-bottom: 14px;
+}
+
+.settings-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.settings-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-body);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  direction: ltr;
+  text-align: left;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.settings-field input:focus {
+  border-color: var(--accent-main);
+}
+
+.settings-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.settings-status {
+  font-size: 0.8rem;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  font-weight: 500;
+  display: none;
+}
+
+.settings-status.ok {
+  display: block;
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.settings-status.err {
+  display: block;
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.tg-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tg-actions .btn {
+  margin-bottom: 0;
+  min-height: 46px;
+  font-size: 0.9rem;
+}
+
+.tg-actions .btn.alt {
+  box-shadow: var(--shadow-sm);
+}
+
+.tg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-main);
+}
+
+.tg-badge.off {
+  background: rgba(100, 116, 139, 0.12);
+  color: var(--text-muted);
+}
+
+/* ── Main ── */
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px calc(88px + var(--safe-bottom));
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.screen {
+  display: none;
+  animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Section Header ── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 2px;
+  gap: 10px;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.date-badge {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.league-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 0 0 12px;
+  margin-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.league-bar::-webkit-scrollbar { display: none; }
+.league-chip {
+  flex-shrink: 0;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border-radius: 20px;
+  padding: 7px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.league-chip.active {
+  background: var(--accent-soft);
+  color: var(--accent-main);
+  border-color: var(--accent-main);
+}
+
+/* ── Loader ── */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 0;
+  color: var(--text-secondary);
+  gap: 14px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent-main);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Messages ── */
+.error-msg {
+  background: var(--danger-soft);
+  color: var(--danger);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  line-height: 1.7;
+}
+
+.no-data-msg {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.banner {
+  background: var(--warning-soft);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  margin-bottom: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.banner::before {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 50px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn.alt {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn.danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1.5px solid var(--danger);
+  box-shadow: none;
+}
+
+.day-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.day-nav .btn {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  min-height: 44px;
+}
+
+/* ── Match Card ── */
+.match-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.match-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+}
+
+.round-tag {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.teams-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  margin-top: 4px;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36%;
+  text-align: center;
+  gap: 6px;
+}
+
+.team-logo-placeholder {
+  width: 44px;
+  height: 44px;
+  background: var(--bg-body);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  border: 1.5px solid var(--border);
+  direction: ltr;
+  letter-spacing: 0.02em;
+  box-shadow: var(--shadow-sm);
+}
+
+.team-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.vs-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 28%;
+  gap: 2px;
+}
+
+.time-text {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent-main);
+  direction: ltr;
+  letter-spacing: 0.02em;
+}
+
+.league-text {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.score-text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  direction: ltr;
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+
+.status-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.status-pill {
+  font-size: 0.72rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pill-upcoming {
+  background: var(--accent-soft);
+  color: var(--accent-main);
+}
+
+.pill-finished {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.pill-wait {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+/* ── Probability Bar ── */
+.bar {
+  display: flex;
+  height: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--border);
+  gap: 1.5px;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.bh { background: var(--c-h); }
+.bd { background: var(--c-d); }
+.ba { background: var(--c-a); }
+
+.bl {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ── Confidence ── */
+.confidence-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.confidence-meter {
+  height: 5px;
+  flex: 1;
+  max-width: 120px;
+  border-radius: 10px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.confidence-meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent-gradient);
+  transition: width 0.4s ease;
+}
+
+/* ── Markets ── */
+.markets {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.mkt {
+  flex: 1;
+  background: var(--bg-body);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  font-weight: 500;
+  min-width: 0;
+}
+
+.mkt b {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-primary);
+  direction: ltr;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.xg-line {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+  direction: ltr;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 0 0;
+}
+
+/* ── Pick Row ── */
+.pick-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.pick-row b {
+  color: var(--text-primary);
+}
+
+/* ── Chips ── */
+.chip {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.chip.ok {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.chip.bad {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.chip.lock {
+  background: var(--accent-soft);
+  color: var(--accent-main);
+}
+
+/* ── Model Card ── */
+.model-card {
+  background: linear-gradient(135deg, var(--accent-soft), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  line-height: 1.75;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.model-card strong {
+  color: var(--accent-main);
+  font-weight: 800;
+}
+
+.note-line {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 16px 0;
+  line-height: 1.65;
+}
+
+/* ── Summary ── */
+.summary-stat-row {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border);
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.stat-val {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--accent-main);
+  white-space: nowrap;
+}
+
+.sub-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 20px 2px 10px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* ── Ratings ── */
+.rt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  margin-bottom: 5px;
+  font-size: 0.88rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.rt-row .n {
+  color: var(--text-muted);
+  width: 26px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.rt-row .t {
+  flex: 1;
+  font-weight: 700;
+}
+
+.rt-row .v {
+  direction: ltr;
+  font-weight: 800;
+  color: var(--accent-main);
+  min-width: 40px;
+  text-align: left;
+}
+
+.rt-row .d {
+  direction: ltr;
+  width: 56px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.up { color: var(--success); }
+.dn { color: var(--danger); }
+.fl { color: var(--text-muted); }
+
+/* ── Help Cards ── */
+.help-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 10px;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-secondary);
+}
+
+.help-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: var(--accent-main);
+  font-weight: 800;
+}
+
+/* ── Calibration ── */
+.cal-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 64px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.cal-track {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cal-pred {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2.5px;
+  background: var(--accent-main);
+  border-radius: 1px;
+}
+
+.cal-act {
+  height: 100%;
+  background: rgba(16, 185, 129, 0.65);
+  border-radius: 6px;
+}
+
+/* ── Bottom Nav ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+  -webkit-backdrop-filter: var(--nav-blur);
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 0 calc(10px + var(--safe-bottom));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 6px 0;
+  min-height: 52px;
+  gap: 3px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-btn.active {
+  color: var(--accent-main);
+  font-weight: 700;
+}
+
+.nav-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 3px;
+  background: var(--accent-main);
+  border-radius: 0 0 4px 4px;
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-btn.active .nav-icon svg {
+  stroke-width: 2.2;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-120px);
+  background: #1e293b;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 500;
+  z-index: 200;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 90%;
+  text-align: center;
+  line-height: 1.55;
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .toast {
+  background: #334155;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Robustness table ── */
+.rob-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  margin: 8px 0 14px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.rob-table th, .rob-table td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.rob-table th {
+  background: var(--bg-body);
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+}
+.rob-table tr.best td {
+  background: var(--success-soft);
+  font-weight: 700;
+}
+.rob-table tr.base td {
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+.rob-table .dir {
+  direction: ltr;
+}
+
+/* ── Status icons inside pills ── */
+.status-pill svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="app-container">
+<header>
+  <div class="logo-area">
+    <h1>ORACLE DAILY</h1>
+    <span id="headerSub">الخمس الكبرى • Elo + Dixon–Coles</span>
+  </div>
+  <div class="header-actions">
+    <button class="settings-btn" id="settingsBtn" aria-label="إعدادات تليجرام" title="إعدادات تليجرام">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+    </button>
+    <button class="theme-toggle" id="themeBtn" aria-label="تبديل المظهر" aria-pressed="false" title="تبديل المظهر">
+      <svg class="icon-sun" id="sunIcon" viewBox="0 0 24 24"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V3H11V1ZM11 21H13V23H11V21ZM3.51472 4.92893L4.92893 3.51472L6.34315 4.92893L4.92893 6.34315L3.51472 4.92893ZM17.6569 19.0711L19.0711 17.6569L20.4853 19.0711L19.0711 20.4853L17.6569 19.0711ZM1 11H3V13H1V11ZM21 11H23V13H21V11ZM4.92893 17.6569L3.51472 19.0711L4.92893 20.4853L6.34315 19.0711L4.92893 17.6569ZM19.0711 3.51472L17.6569 4.92893L19.0711 6.34315L20.4853 4.92893L19.0711 3.51472Z"></path></svg>
+      <svg class="icon-moon hide-icon" id="moonIcon" viewBox="0 0 24 24"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.7301 13.1958 22 11.9C22.0001 12.0001 22 12.1 22 12.2C22 17.6013 17.6013 22 12.2 22C6.79873 22 2.4 17.6013 2.4 12.2C2.4 6.79873 6.79873 2.4 12.2 2.4C12.3 2.4 12.4 2.4001 12.5 2.4002C11.2042 3.67006 10.4 5.44177 10.4 7.4C10.4 7.26667 10.4 7.13333 10.4 7H10Z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Settings Modal -->
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-panel">
+    <div class="settings-header">
+      <h2>إعدادات تليجرام</h2>
+      <button class="settings-close" id="settingsClose" aria-label="إغلاق">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="settings-status" id="tgStatus"></div>
+
+    <div class="settings-field">
+      <label for="tgToken">Bot Token</label>
+      <input type="password" id="tgToken" placeholder="123456:ABC-DEF..." autocomplete="off" spellcheck="false">
+      <div class="settings-hint">من @BotFather → /newbot أو /token</div>
+    </div>
+
+    <div class="settings-field">
+      <label for="tgChat">Chat ID</label>
+      <input type="text" id="tgChat" placeholder="-100xxxxxxxxxx أو رقمك" autocomplete="off" spellcheck="false">
+      <div class="settings-hint">أرسل رسالة للبوت ثم افتح: api.telegram.org/bot<TOKEN>/getUpdates</div>
+    </div>
+
+    <button class="btn" id="tgSaveBtn">حفظ الإعدادات</button>
+
+    <div class="sub-title" style="margin-top:18px;margin-bottom:8px">إرسال سريع</div>
+    <div class="tg-actions">
+      <button class="btn alt" id="tgSendToday" disabled>إرسال تحليل الجولة الحالية</button>
+      <button class="btn alt" id="tgSendYest" disabled>إرسال نتائج الجولة السابقة</button>
+      <button class="btn alt" id="tgSendReport" disabled>إرسال تقرير الأداء (Backtest)</button>
+    </div>
+
+    <div class="note-line" style="margin-top:14px">
+      للاستخدام الشخصي فقط. التوكن يُحفظ محليًا في متصفحك ولا يُرسل لأي خادم غير تليجرام.
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+  <section id="screen-today" class="screen active">
+    <div id="today-root">
+      <div class="loader-container">
+        <div class="spinner"></div>
+        <p>جارِ جلب البيانات...</p>
+      </div>
+    </div>
+  </section>
+  <section id="screen-review" class="screen">
+    <div id="review-root"></div>
+  </section>
+  <section id="screen-summary" class="screen">
+    <div id="summary-root"></div>
+  </section>
+  <section id="screen-help" class="screen">
+    <div class="section-header">
+      <h2 class="section-title">تعليمات الاستخدام</h2>
+    </div>
+    <div class="help-card">
+      <h3>📅 وضع الجولة</h3>
+      الشاشة الرئيسية تعرض <b>الجولة (Matchday)</b> كاملة — لا يوماً واحداً. تنقّل بين الجولات السابقة والتالية. عند فتح جولة قادمة أو جارية تُحسب التوقعات وتُقفل دفعة واحدة ولا تتغير.
+    </div>
+    <div class="help-card">
+      <h3>🔄 بعد انتهاء الجولة</h3>
+      اضغط «المراجعة» ثم «حدّث النتائج». يُقارن كل توقع مقفل بالنتيجة ويظهر أصاب أو أخطأ. يمكنك إرسال تقرير الجولة إلى تليجرام.
+    </div>
+    <div class="help-card">
+      <h3>📊 الملخص</h3>
+      نسبة إصابة التوقعات المقفلة، ومقاييس الاختبار الرجعي (Brier وLog Loss وBSS)، واختبار متانة المعاملات، وقوة الفرق — لكل دوري على حدة.
+    </div>
+    <div class="help-card">
+      <h3>⚠️ حدود مهمة</h3>
+      المصدر (OpenFootball) ليس لحظيًا وقد يتأخر في إضافة النتائج. التوقعات تبقى في هذا المتصفح فقط. للحفظ الثابت ارفع الملف على GitHub Pages.
+    </div>
+    <div class="help-card">
+      <h3>🧠 منهجية النموذج</h3>
+      Ensemble من Elo مطوّر (تصنيف أرض/خارج، أفضلية أرض، مضاعف فارق الأهداف، اضمحلال زمني) وDixon–Coles (بواسون للهجوم والدفاع مع مصحح ρ للنتائج المنخفضة). الأوزان تُشتق من مقلوب Brier في مسار رجعي موسّع، لا من ثوابت. أكثر/أقل من 2.5 وكلا الفريقين يسجل من مصفوفة النتائج لديكن-كولز. لا أسعار سوق ولا ادعاء بقيمة رهان.
+    </div>
+    <div class="help-card">
+      <h3>ℹ️ تنويه</h3>
+      للبحث والتنبؤ فقط. النسب تقديرات إحصائية وليست نصيحة رهان. النتائج السابقة لا تضمن نتائج مستقبلية.
+    </div>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="switchScreen('today')">
+    <span class="nav-icon">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+    </span>
+    <span>الجولة</span>
+  </button>
+  <button class="nav-btn" onclick="switchScreen('review')">
+    <span class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+    </span>
+    <span>المراجعة</span>
+  </button>
+  <button class="nav-btn" onclick="switchScreen('summary')">
+    <span class="nav-icon">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+    </span>
+    <span>الملخص</span>
+  </button>
+  <button class="nav-btn" onclick="switchScreen('help')">
+    <span class="nav-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </span>
+    <span>تعليمات</span>
+  </button>
+</nav>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const SEASONS=['2023-24','2024-25','2025-26','2026-27'];
+const SRC='https://raw.githubusercontent.com/openfootball/football.json/master/';
+const ZONE='Africa/Algiers';
+const K=20,HFA=48,BASE=1500,NEWC=1400,REG=0.22,LOCK_DAYS=3,DAY=86400000,MODEL_VERSION='ENS-1.2';
+const ELO_HL=160, XI=0.005, PRIOR=8, MAXG=8, SHARE=0.32, RHO0=-0.10;
+const COMBINED_BRIER_W=0.55, COMBINED_LOG_W=0.45, WEIGHT_WINDOW=180, WEIGHT_MIN_OBS=60, WEIGHT_TAU=0.03, WEIGHT_MIN=0.30, WEIGHT_MAX=0.70;
+const K_THEME='oracle_theme',K_TG='oracle_tg_v1',K_LEAGUE='oracle_league_v1';
+const SCREENS=['today','review','summary','help'];
+const LEAGUES={
+  'en.1':{id:'en.1',name:'الدوري الإنجليزي',short:'EPL',nameEn:'Premier League'},
+  'de.1':{id:'de.1',name:'الدوري الألماني',short:'BL',nameEn:'Bundesliga'},
+  'es.1':{id:'es.1',name:'الدوري الإسباني',short:'LAL',nameEn:'La Liga'},
+  'it.1':{id:'it.1',name:'الدوري الإيطالي',short:'SA',nameEn:'Serie A'},
+  'fr.1':{id:'fr.1',name:'الدوري الفرنسي',short:'L1',nameEn:'Ligue 1'}
+};
+const LEAGUE_IDS=Object.keys(LEAGUES);
+function kPreds(lg){return 'oracle_preds_v3_'+(lg||S.league)}
+function kCache(lg){return 'oracle_cache_v2_'+(lg||S.league)}
+function kSnap(lg){return 'oracle_snap_v3_'+(lg||S.league)}
+const AR={
+  'Arsenal':'أرسنال','Aston Villa':'أستون فيلا','Bournemouth':'بورنموث','Brentford':'برينتفورد',
+  'Brighton & Hove Albion':'برايتون','Burnley':'بيرنلي','Chelsea':'تشيلسي','Crystal Palace':'كريستال بالاس',
+  'Everton':'إيفرتون','Fulham':'فولهام','Ipswich Town':'إبسويتش','Leeds United':'ليدز يونايتد',
+  'Leicester City':'ليستر سيتي','Liverpool':'ليفربول','Luton Town':'لوتون تاون','Manchester City':'مانشستر سيتي',
+  'Manchester United':'مان يونايتد','Newcastle United':'نيوكاسل','Nottingham Forest':'نوتينغهام فورست',
+  'Sheffield United':'شيفيلد يونايتد','Southampton':'ساوثهامبتون','Sunderland':'سندرلاند',
+  'Tottenham Hotspur':'توتنهام','West Ham United':'وست هام','Wolverhampton Wanderers':'وولفرهامبتون',
+  'Coventry City':'كوفنتري سيتي','Hull City':'هال سيتي',
+  'Bayern München':'بايرن ميونخ','Borussia Dortmund':'دورتموند','RB Leipzig':'لايبزيغ',
+  'Bayer Leverkusen':'باير ليفركوزن','Eintracht Frankfurt':'فرانكفورت','VfB Stuttgart':'شتوتغارت',
+  'VfL Wolfsburg':'فولفسبورغ','SC Freiburg':'فرايبورغ','TSG Hoffenheim':'هوفنهايم',
+  'Werder Bremen':'فيردر بريمن','Borussia Mönchengladbach':'مونشنغلادباخ','1. FC Union Berlin':'يونيون برلين',
+  'FC Augsburg':'آوغسبورغ','1. FSV Mainz 05':'ماينز','1. FC Köln':'كولن','VfL Bochum':'بوخوم',
+  'Holstein Kiel':'هولشتاين كيل','FC St. Pauli':'سانت باولي','Heidenheim':'هايدنهايم',
+  'Darmstadt 98':'دارمشتات','Schalke 04':'شالكه',
+  'Real Madrid':'ريال مدريد','Barcelona':'برشلونة','Atlético Madrid':'أتلتيكو مدريد',
+  'Athletic Club':'أتلتيك بلباو','Real Sociedad':'ريال سوسيداد','Villarreal':'فياريال',
+  'Real Betis':'ريال بيتيس','Sevilla':'إشبيلية','Valencia':'فالنسيا','Osasuna':'أوساسونا',
+  'Celta Vigo':'سيلتا فيغو','Mallorca':'مايوركا','Girona':'جيرونا','Rayo Vallecano':'رايو فاليكانو',
+  'Getafe':'خيتافي','Las Palmas':'لاس بالماس','Alavés':'ألافيس','Leganés':'ليغانيس',
+  'Espanyol':'إسبانيول','Valladolid':'بلد الوليد','Cádiz':'قادش','Granada':'غرناطة','Almería':'ألميريا',
+  'Inter':'إنتر','Milan':'ميلان','Juventus':'يوفنتوس','Napoli':'نابولي','Atalanta':'أتالانتا',
+  'Roma':'روما','Lazio':'لاتسيو','Fiorentina':'فيورنتينا','Bologna':'بولونيا','Torino':'تورينو',
+  'Genoa':'جنوى','Monza':'مونزا','Udinese':'أودينيزي','Sassuolo':'ساسولو','Cagliari':'كالياري',
+  'Empoli':'إمبولي','Verona':'فيرونا','Lecce':'ليتشي','Parma':'بارما','Como':'كومو',
+  'Venezia':'فينيسيا','Frosinone':'فروسينوني','Salernitana':'ساليرنيتانا',
+  'Paris Saint-Germain':'باريس سان جيرمان','Monaco':'موناكو','Marseille':'مارسيليا',
+  'Lyon':'ليون','Lille':'ليل','Nice':'نيس','Rennes':'رين','Lens':'لانس','Strasbourg':'ستراسبورغ',
+  'Nantes':'نانت','Reims':'ريمس','Montpellier':'مونبلييه','Toulouse':'تولوز','Brest':'بريست',
+  'Angers':'أنجيه','Le Havre':'لوهافر','Auxerre':'أوكسير','Saint-Étienne':'سانت إتيان',
+  'Metz':'ميتز','Clermont Foot':'كليرمون'
+};
+
+const LON=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const ALG_DATE=new Intl.DateTimeFormat('en-CA',{timeZone:ZONE,year:'numeric',month:'2-digit',day:'2-digit'});
+const ALG_TIME=new Intl.DateTimeFormat('en-GB',{timeZone:ZONE,hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+
+const mem={};
+function sGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return mem[k]!==undefined?mem[k]:d}}
+function sSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){mem[k]=v;return false}}
+
+function norm(n){return String(n).replace(/^AFC\s+/,'').replace(/\s+(AFC|FC)$/,'').trim()}
+function nm(t){return AR[t]||t}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]))}
+function londonToTs(d,t){const a=d.split('-').map(Number),b=String(t).split(':').map(Number);const g=Date.UTC(a[0],a[1]-1,a[2],b[0],b[1]||0);const o={};LON.formatToParts(new Date(g)).forEach(p=>{o[p.type]=p.value});const off=Date.UTC(+o.year,+o.month-1,+o.day,+o.hour,+o.minute,+o.second)-g;return g-off}
+function algDate(ts){return ALG_DATE.format(new Date(ts))}
+function algTime(ts){return ALG_TIME.format(new Date(ts))}
+function dayDiff(a,b){return Math.round((Date.parse(a)-Date.parse(b))/DAY)}
+function scoreOf(m){const s=m.score;if(!s)return null;const f=Array.isArray(s)?s:s.ft;if(Array.isArray(f)&&f.length===2&&Number.isFinite(f[0])&&Number.isFinite(f[1]))return f;return null}
+function compact(json,idx){const out=[];((json&&json.matches)||[]).forEach(m=>{if(!m.date||!m.team1||!m.team2)return;const t=m.time||'15:00';const sc=scoreOf(m);out.push({s:idx,d:m.date,t:t,r:m.round||'',h:norm(m.team1),a:norm(m.team2),gh:sc?sc[0]:null,ga:sc?sc[1]:null,ts:londonToTs(m.date,t)})});return out}
+function mid(m){return m.d+'|'+m.h+'|'+m.a}
+function outcome(gh,ga){return gh>ga?'h':gh===ga?'d':'a'}
+function clamp01(x){return Math.min(0.98,Math.max(0.02,x))}
+
+function poisson(k,lambda){
+  if(k<0)return 0;
+  if(lambda<=1e-9)return k===0?1:0;
+  let p=Math.exp(-lambda);
+  for(let i=1;i<=k;i++)p*=lambda/i;
+  return p;
+}
+function tauDC(x,y,lh,la,rho){
+  let t=1;
+  if(x===0&&y===0)t=1-lh*la*rho;
+  else if(x===1&&y===0)t=1+la*rho;
+  else if(x===0&&y===1)t=1+lh*rho;
+  else if(x===1&&y===1)t=1-rho;
+  return t<0?0:t;
+}
+function emptyAcc(){return {hw:0,hgf:0,hga:0,aw:0,agf:0,aga:0,last:0}}
+function emptyElo(){return {home:BASE,away:BASE,last:0}}
+
+function decayElo(r,days,hl){
+  const half=hl!=null?hl:ELO_HL;
+  if(!days||days<=0)return r;
+  const k=Math.exp(-Math.LN2*days/half);
+  return r*k+BASE*(1-k);
+}
+function eloExpect(rh,ra,hfa){
+  const ha=hfa!=null?hfa:HFA;
+  return 1/(1+Math.pow(10,-((rh+ha)-ra)/400));
+}
+function probsFromExpect(e,rh,ra,hfa){
+  const ha=hfa!=null?hfa:HFA;
+  const gap=Math.abs((rh+ha)-ra);
+  const pd=Math.min(0.30,Math.max(0.12,0.28-0.00022*gap));
+  let ph=Math.max(e-pd/2,0.02),pa=Math.max(1-e-pd/2,0.02);
+  const s=ph+pd+pa;
+  return {h:ph/s,d:pd/s,a:pa/s};
+}
+function pickOf(p){if(p.h>=p.d&&p.h>=p.a)return 'h';return p.a>=p.d?'a':'d'}
+function confidenceOf(p){return Math.max(p.h,p.d,p.a)}
+function confidenceLabel(p){const c=confidenceOf(p);return c>=.60?'ثقة مرتفعة':c>=.48?'ثقة متوسطة':'ثقة منخفضة'}
+function confidenceBar(p){const c=Math.round(confidenceOf(p)*100);return '<div class="confidence-row"><span>'+confidenceLabel(p)+' ('+c+'%)</span><span class="confidence-meter" role="progressbar" aria-label="مستوى الثقة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+c+'"><i style="width:'+c+'%"></i></span></div>'}
+
+function weightsFrom(bE,bD){
+  const sE=1/Math.max(bE,1e-4), sD=1/Math.max(bD,1e-4), z=sE+sD;
+  return {elo:sE/z, dc:sD/z};
+}
+function calculateEnsemblePrediction(eloP,dcP,w){
+  const we=w&&Number.isFinite(w.elo)?w.elo:0.5, wd=w&&Number.isFinite(w.dc)?w.dc:0.5;
+  let h=we*eloP.h+wd*dcP.h, d=we*eloP.d+wd*dcP.d, a=we*eloP.a+wd*dcP.a;
+  const s=h+d+a||1;
+  return {
+    h:h/s,d:d/s,a:a/s,
+    ou:dcP.ou,btts:dcP.btts,lh:dcP.lh,la:dcP.la,
+    we:we,wd:wd,context:eloP.context||null,elo:eloP,dc:{h:dcP.h,d:dcP.d,a:dcP.a}
+  };
+}
+
+function rateOf(acc,lg,prior){
+  const pr=prior!=null?prior:PRIOR;
+  const avgH=lg.hw>1?lg.hgf/lg.hw:1.48, avgA=lg.aw>1?lg.agf/lg.aw:1.18;
+  const attH=(acc.hgf+pr*avgH)/((acc.hw+pr)*avgH);
+  const defH=(acc.hga+pr*avgA)/((acc.hw+pr)*avgA);
+  const attA=(acc.agf+pr*avgA)/((acc.aw+pr)*avgA);
+  const defA=(acc.aga+pr*avgH)/((acc.aw+pr)*avgH);
+  return {attH,defH,attA,defA,avgH,avgA};
+}
+function dixonColesProbs(accH,accA,lg,rho,prior){
+  const h=rateOf(accH,lg,prior), a=rateOf(accA,lg,prior);
+  const lh=Math.min(4.5,Math.max(0.15,h.avgH*h.attH*a.defA));
+  const la=Math.min(4.2,Math.max(0.12,a.avgA*a.attA*h.defH));
+  const ph=[], pa=[];
+  for(let i=0;i<=MAXG;i++){ph.push(poisson(i,lh));pa.push(poisson(i,la))}
+  let mass=0, hw=0, dr=0, aw=0, ou=0, btts=0;
+  const raw=[];
+  for(let x=0;x<=MAXG;x++)for(let y=0;y<=MAXG;y++){
+    const p=tauDC(x,y,lh,la,rho)*ph[x]*pa[y];
+    raw.push(p); mass+=p;
+  }
+  if(mass<=0)mass=1;
+  let k=0;
+  for(let x=0;x<=MAXG;x++)for(let y=0;y<=MAXG;y++){
+    const p=raw[k++]/mass;
+    if(x>y)hw+=p; else if(x===y)dr+=p; else aw+=p;
+    if(x+y>=3)ou+=p;
+    if(x>0&&y>0)btts+=p;
+  }
+  return {h:hw,d:dr,a:aw,ou:ou,btts:btts,lh:lh,la:la};
+}
+function estimateRho(buf){
+  if(!buf||buf.length<40)return RHO0;
+  let best=RHO0, bestLl=-Infinity;
+  for(let r=-0.20;r<=0.06;r+=0.02){
+    let ll=0;
+    for(const m of buf){
+      const p=tauDC(Math.min(m.gh,MAXG),Math.min(m.ga,MAXG),m.lh,m.la,r)*poisson(m.gh,m.lh)*poisson(m.ga,m.la);
+      ll+=Math.log(Math.max(p,1e-12));
+    }
+    if(ll>bestLl){bestLl=ll;best=r}
+  }
+  return best;
+}
+
+function blankMetrics(){return {n:0,hit:0,home:0,brier:0,logLoss:0,bins:Array.from({length:5},()=>({n:0,p:0,h:0})),conf:[{n:0,hit:0},{n:0,hit:0},{n:0,hit:0}]}}
+function scorePred(st,p,o){
+  st.n++;
+  if(pickOf(p)===o)st.hit++;
+  if(o==='h')st.home++;
+  st.brier+=Math.pow(p.h-(o==='h'?1:0),2)+Math.pow(p.d-(o==='d'?1:0),2)+Math.pow(p.a-(o==='a'?1:0),2);
+  st.logLoss-=Math.log(Math.max(p[o],1e-12));
+  const b=Math.min(4,Math.floor(p.h/0.2));
+  st.bins[b].n++; st.bins[b].p+=p.h; st.bins[b].h+=o==='h'?1:0;
+  const c=confidenceOf(p);
+  const ci=c>=0.60?2:c>=0.48?1:0;
+  st.conf[ci].n++; if(pickOf(p)===o)st.conf[ci].hit++;
+}
+function finishMetrics(st){
+  if(!st.n)return st;
+  st.brier/=st.n; st.logLoss/=st.n;
+  st.bins.forEach(b=>{if(b.n){b.p/=b.n;b.h/=b.n}});
+  return st;
+}
+function brierSkill(modelBrier,refBrier){
+  if(!refBrier||refBrier<=0)return null;
+  return 1-modelBrier/refBrier;
+}
+function combinedLoss(p,o){
+  const u=1/3;
+  const actual={h:o==='h'?1:0,d:o==='d'?1:0,a:o==='a'?1:0};
+  const brier=['h','d','a'].reduce((z,k)=>z+Math.pow(p[k]-actual[k],2),0);
+  const logLoss=-Math.log(Math.max(p[o],1e-12));
+  const refBrier=['h','d','a'].reduce((z,k)=>z+Math.pow(u-actual[k],2),0);
+  const refLogLoss=-Math.log(u);
+  return COMBINED_BRIER_W*(brier/refBrier)+COMBINED_LOG_W*(logLoss/refLogLoss);
+}
+function dynamicWeights(history){
+  if(!history||history.length<WEIGHT_MIN_OBS)return {elo:0.5,dc:0.5};
+  const recent=history.slice(-WEIGHT_WINDOW);
+  const e=recent.reduce((z,x)=>z+x.elo,0)/recent.length;
+  const d=recent.reduce((z,x)=>z+x.dc,0)/recent.length;
+  let dc=1/(1+Math.exp((d-e)/WEIGHT_TAU));
+  const confidence=Math.min(1,recent.length/WEIGHT_WINDOW);
+  dc=confidence*dc+(1-confidence)*0.5;
+  dc=Math.min(WEIGHT_MAX,Math.max(WEIGHT_MIN,dc));
+  return {elo:1-dc,dc:dc};
+}
+function finishCombined(st){
+  if(!st||!st.n)return {n:0,score:null,skill:null};
+  const score=st.sum/st.n;
+  return {n:st.n,score:score,skill:1-score,brierWeight:COMBINED_BRIER_W,logLossWeight:COMBINED_LOG_W};
+}
+function lockedConfStats(){
+  const buckets=[{n:0,hit:0,label:'ثقة منخفضة'},{n:0,hit:0,label:'ثقة متوسطة'},{n:0,hit:0,label:'ثقة مرتفعة'}];
+  Object.values(S.preds).forEach(p=>{
+    if(!p.res)return;
+    const c=Math.max(p.ph,p.pd,p.pa);
+    const i=c>=0.60?2:c>=0.48?1:0;
+    buckets[i].n++; if(p.res.hit)buckets[i].hit++;
+  });
+  return buckets;
+}
+
+function defaultParams(){return {K:K,HFA:HFA,ELO_HL:ELO_HL,REG:REG,SHARE:SHARE,XI:XI,PRIOR:PRIOR,RHO0:RHO0}}
+function completedBefore(all,team,beforeTs,season){
+  return all.filter(m=>m.gh!==null&&m.ts<beforeTs&&(season==null||m.s===season)&&(m.h===team||m.a===team)).sort((a,b)=>b.ts-a.ts);
+}
+function matchOutcomeForTeam(m,team){
+  const home=m.h===team, gf=home?m.gh:m.ga, ga=home?m.ga:m.gh;
+  return {points:gf>ga?3:gf===ga?1:0,gf,ga,win:gf>ga,draw:gf===ga,loss:gf<ga};
+}
+function recentTeamForm(all,team,beforeTs,season){
+  const ms=completedBefore(all,team,beforeTs,season).slice(0,5);
+  if(!ms.length)return {n:0,points:0,pointsRate:0.5,gdRate:0,signal:0,results:[]};
+  let points=0,gf=0,ga=0;
+  const results=ms.map(m=>{const x=matchOutcomeForTeam(m,team);points+=x.points;gf+=x.gf;ga+=x.ga;return x.win?'W':x.draw?'D':'L'});
+  const pointsRate=points/(3*ms.length);
+  const gdRate=Math.max(-1,Math.min(1,(gf-ga)/(3*ms.length)));
+  return {n:ms.length,points,pointsRate,gdRate,signal:Math.max(-1,Math.min(1,(pointsRate-0.5)*1.4+gdRate*0.35)),results};
+}
+function standingsBefore(all,beforeTs,season){
+  const tab=new Map();
+  all.filter(m=>m.gh!==null&&m.ts<beforeTs&&(season==null||m.s===season)).forEach(m=>{
+    for(const team of [m.h,m.a])if(!tab.has(team))tab.set(team,{team,played:0,points:0,gf:0,ga:0,wins:0,draws:0,losses:0});
+    const h=tab.get(m.h),a=tab.get(m.a); h.played++;a.played++;h.gf+=m.gh;h.ga+=m.ga;a.gf+=m.ga;a.ga+=m.gh;
+    if(m.gh>m.ga){h.points+=3;h.wins++;a.losses++;}else if(m.gh<m.ga){a.points+=3;a.wins++;h.losses++;}else{h.points++;a.points++;h.draws++;a.draws++;}
+  });
+  const rows=[...tab.values()].sort((x,y)=>(y.points-x.points)||((y.gf-y.ga)-(x.gf-x.ga))||(y.gf-x.gf));
+  rows.forEach((x,i)=>{x.rank=i+1;x.ppg=x.played?x.points/x.played:0;x.gdpg=x.played?(x.gf-x.ga)/x.played:0});
+  return new Map(rows.map(x=>[x.team,x]));
+}
+function headToHead(all,home,away,beforeTs){
+  const ms=all.filter(m=>m.gh!==null&&m.ts<beforeTs&&((m.h===home&&m.a===away)||(m.h===away&&m.a===home))).sort((a,b)=>b.ts-a.ts).slice(0,5);
+  let signal=0;
+  ms.forEach((m,i)=>{const weight=Math.pow(0.82,i); const homeWon=(m.h===home&&m.gh>m.ga)||(m.a===home&&m.ga>m.gh); const draw=m.gh===m.ga; signal+=weight*(homeWon?1:draw?0:-1)});
+  const denom=ms.reduce((z,_,i)=>z+Math.pow(0.82,i),0)||1;
+  return {n:ms.length,signal:Math.max(-1,Math.min(1,signal/denom)),results:ms.map(m=>m.gh===m.ga?'D':((m.h===home&&m.gh>m.ga)||(m.a===home&&m.ga>m.gh)?'H':'A'))};
+}
+function contextualFeatures(all,m){
+  const season=m.s, before=m.ts;
+  const hf=recentTeamForm(all,m.h,before,season), af=recentTeamForm(all,m.a,before,season);
+  const table=standingsBefore(all,before,season), hs=table.get(m.h), as=table.get(m.a);
+  const rankSignal=hs&&as?Math.max(-1,Math.min(1,(as.rank-hs.rank)/Math.max(5,table.size/2))):0;
+  const h2h=headToHead(all,m.h,m.a,before);
+  const h2hSignal=h2h.n>=3?h2h.signal:0;
+  const signal=Math.max(-1,Math.min(1,0.55*(hf.signal-af.signal)+0.30*rankSignal+0.15*h2hSignal));
+  return {home: m.h,away:m.a,homeForm:hf,awayForm:af,homeStandings:hs||null,awayStandings:as||null,h2h,rankSignal,signal};
+}
+function adjustEloWithContext(p,ctx){
+  if(!ctx)return p;
+  // محافظ: Form + ترتيب + H2H يعدّل Elo فقط، وDixon-Coles يبقى قائمًا على الأهداف.
+  const shift=0.055*ctx.signal;
+  let h=Math.max(0.02,p.h+shift), a=Math.max(0.02,p.a-shift), d=Math.max(0.12,p.d);
+  const z=h+a+d;
+  return Object.assign({},p,{h:h/z,d:d/z,a:a/z,context:ctx});
+}
+
+function walk(all,beforeTs,minSeason,P){
+  P=P||defaultParams();
+  const elo=new Map(), acc=new Map(), lg={hw:0,hgf:0,hga:0,aw:0,agf:0,aga:0,t:0};
+  const buf=[];
+  let rho=P.RHO0, last=-1;
+  const first=all.length?all[0].s:0;
+  const eloM=blankMetrics(), dcM=blankMetrics(), enM=blankMetrics();
+  let runE={brier:0,n:0}, runD={brier:0,n:0};
+  let w={elo:0.5,dc:0.5};
+  const weightHistory=[];
+  const combined={elo:{n:0,sum:0},dc:{n:0,sum:0},en:{n:0,sum:0}};
+  function ensure(team,season){
+    if(!elo.has(team)){const b=season===first?BASE:NEWC;elo.set(team,{home:b,away:b,last:0})}
+    if(!acc.has(team))acc.set(team,emptyAcc());
+  }
+  function decayAcc(f){
+    if(f>=0.999)return;
+    lg.hw*=f;lg.hgf*=f;lg.hga*=f;lg.aw*=f;lg.agf*=f;lg.aga*=f;
+    acc.forEach(v=>{v.hw*=f;v.hgf*=f;v.hga*=f;v.aw*=f;v.agf*=f;v.aga*=f});
+  }
+  for(const m of all){
+    if(m.ts>=beforeTs)break;
+    ensure(m.h,m.s); ensure(m.a,m.s);
+    if(m.s!==last){
+      if(last!==-1)elo.forEach(v=>{v.home=v.home*(1-P.REG)+BASE*P.REG;v.away=v.away*(1-P.REG)+BASE*P.REG});
+      last=m.s;
+    }
+    const eh=elo.get(m.h), ea=elo.get(m.a);
+    const dh=eh.last?(m.ts-eh.last)/DAY:0, da=ea.last?(m.ts-ea.last)/DAY:0;
+    const rh=decayElo(eh.home,dh,P.ELO_HL), ra=decayElo(ea.away,da,P.ELO_HL);
+    const eloP=adjustEloWithContext(probsFromExpect(eloExpect(rh,ra,P.HFA),rh,ra,P.HFA),contextualFeatures(all,m));
+    if(lg.t){const days=(m.ts-lg.t)/DAY;if(days>0.05)decayAcc(Math.exp(-P.XI*days))}
+    const dcP=dixonColesProbs(acc.get(m.h),acc.get(m.a),lg,rho,P.PRIOR);
+    const ens=calculateEnsemblePrediction(eloP,dcP,w);
+    if(m.gh!==null && m.s>=minSeason){
+      const o=outcome(m.gh,m.ga);
+      scorePred(eloM,eloP,o); scorePred(dcM,dcP,o); scorePred(enM,ens,o);
+      runE.brier+=Math.pow(eloP.h-(o==='h'?1:0),2)+Math.pow(eloP.d-(o==='d'?1:0),2)+Math.pow(eloP.a-(o==='a'?1:0),2); runE.n++;
+      runD.brier+=Math.pow(dcP.h-(o==='h'?1:0),2)+Math.pow(dcP.d-(o==='d'?1:0),2)+Math.pow(dcP.a-(o==='a'?1:0),2); runD.n++;
+      combined.elo.n++; combined.elo.sum+=combinedLoss(eloP,o);
+      combined.dc.n++; combined.dc.sum+=combinedLoss(dcP,o);
+      combined.en.n++; combined.en.sum+=combinedLoss(ens,o);
+      weightHistory.push({elo:combinedLoss(eloP,o),dc:combinedLoss(dcP,o)});
+      if(weightHistory.length>=WEIGHT_MIN_OBS && weightHistory.length%20===0)w=dynamicWeights(weightHistory);
+    }
+    if(m.gh===null)continue;
+    const e=eloExpect(rh,ra,P.HFA);
+    const res=m.gh>m.ga?1:m.gh===m.ga?0.5:0;
+    const gd=Math.abs(m.gh-m.ga);
+    const mult=gd<=1?1:gd===2?1.5:(11+gd)/8;
+    const dl=P.K*mult*(res-e);
+    eh.home=rh+dl; eh.away=decayElo(eh.away,dh,P.ELO_HL)+P.SHARE*dl; eh.last=m.ts;
+    ea.away=ra-dl; ea.home=decayElo(ea.home,da,P.ELO_HL)-P.SHARE*dl; ea.last=m.ts;
+    const ah=acc.get(m.h), aa=acc.get(m.a);
+    ah.hw+=1; ah.hgf+=m.gh; ah.hga+=m.ga;
+    aa.aw+=1; aa.agf+=m.ga; aa.aga+=m.gh;
+    lg.hw+=1; lg.hgf+=m.gh; lg.hga+=m.ga; lg.aw+=1; lg.agf+=m.ga; lg.aga+=m.gh; lg.t=m.ts;
+    buf.push({lh:dcP.lh,la:dcP.la,gh:m.gh,ga:m.ga});
+    if(buf.length>220)buf.shift();
+    if(buf.length>=40 && buf.length%30===0)rho=estimateRho(buf);
+  }
+  if(runE.n>=24)w=weightsFrom(runE.brier/runE.n,runD.brier/runD.n);
+  return {elo,acc,lg,rho,w,weightHistoryN:weightHistory.length,combined:{elo:finishCombined(combined.elo),dc:finishCombined(combined.dc),en:finishCombined(combined.en)},eloM:finishMetrics(eloM),dcM:finishMetrics(dcM),enM:finishMetrics(enM)};
+}
+
+function predictMatch(state,m){
+  const eh=state.elo.get(m.h)||emptyElo(), ea=state.elo.get(m.a)||emptyElo();
+  const now=m.ts;
+  const rh=decayElo(eh.home,eh.last?(now-eh.last)/DAY:0);
+  const ra=decayElo(ea.away,ea.last?(now-ea.last)/DAY:0);
+  const eloP=adjustEloWithContext(probsFromExpect(eloExpect(rh,ra,HFA),rh,ra,HFA),contextualFeatures(S.all,m));
+  const dcP=dixonColesProbs(state.acc.get(m.h)||emptyAcc(),state.acc.get(m.a)||emptyAcc(),state.lg,state.rho);
+  return calculateEnsemblePrediction(eloP,dcP,state.w);
+}
+
+const S={all:[],cur:0,from:'live',at:0,notes:[],dates:[],rounds:[],idx:0,preds:{},state:null,bt:null,busy:false,robust:null,robBusy:false,league:'en.1'};
+function lgInfo(){return LEAGUES[S.league]||LEAGUES['en.1']}
+function R(t){const e=S.state&&S.state.elo.get(t);return e?(e.home+e.away)/2:NEWC}
+function venue(t){const e=S.state&&S.state.elo.get(t);return e?e:{home:NEWC,away:NEWC}}
+
+async function fetchSeason(i,leagueId){
+  const lg=leagueId||S.league;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+  try{
+    const r=await fetch(SRC+SEASONS[i]+'/'+lg+'.json',{cache:'no-store',signal:controller.signal});
+    if(!r.ok)throw new Error('http '+r.status);
+    const json=await r.json();
+    if(!json||!Array.isArray(json.matches))throw new Error('invalid payload');
+    return compact(json,i);
+  }finally{clearTimeout(timer)}
+}
+
+function assemble(seasons,from,at){
+  const keys=Object.keys(seasons).map(Number).sort((a,b)=>a-b);
+  S.all=[].concat(...keys.map(k=>seasons[k])).sort((a,b)=>a.ts-b.ts);
+  S.cur=keys[keys.length-1];S.from=from;S.at=at;S.notes=[];
+  if(S.cur!==SEASONS.length-1)S.notes.push('موسم '+SEASONS[SEASONS.length-1]+' غير متاح حاليًا في المصدر، فعُرض موسم '+SEASONS[S.cur]+'.');
+  if(from!=='live')S.notes.push('تعذر الاتصال بالمصدر. تُعرض بيانات محفوظة بتاريخ '+ALG_DATE.format(new Date(at))+' '+algTime(at)+'.');
+}
+
+async function loadData(){
+  const res=await Promise.allSettled(SEASONS.map((s,i)=>fetchSeason(i,S.league)));
+  const got={};res.forEach((x,i)=>{if(x.status==='fulfilled'&&x.value.length)got[i]=x.value});
+  const cache=sGet(kCache(),null);const keys=Object.keys(got);
+  if(!keys.length){if(!cache||!cache.seasons)return{ok:false};assemble(cache.seasons,'cache',cache.at);return{ok:true,from:'cache'}}
+  const seasons=Object.assign({},got);
+  if(cache&&cache.seasons)Object.keys(cache.seasons).forEach(k=>{if(!seasons[k])seasons[k]=cache.seasons[k]});
+  sSet(kCache(),{at:Date.now(),seasons:seasons});
+  assemble(seasons,'live',Date.now());return{ok:true,from:'live'};
+}
+
+function roundKey(m){
+  const r=String(m.r||'').trim();
+  if(r)return r;
+  // fallback: ISO week of match date
+  const d=new Date(m.ts);
+  const onejan=new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  const week=Math.ceil((((m.ts-onejan.getTime())/DAY)+onejan.getUTCDay()+1)/7);
+  return 'Week '+week;
+}
+function buildRounds(){
+  const map=new Map(); // key -> {key, label, minTs, maxTs, n, done}
+  S.all.forEach(m=>{
+    if(m.s!==S.cur)return;
+    const k=roundKey(m);
+    let o=map.get(k);
+    if(!o){o={key:k,label:k,minTs:m.ts,maxTs:m.ts,n:0,done:0};map.set(k,o)}
+    o.minTs=Math.min(o.minTs,m.ts); o.maxTs=Math.max(o.maxTs,m.ts); o.n++;
+    if(m.gh!==null)o.done++;
+  });
+  S.rounds=Array.from(map.values()).sort((a,b)=>a.minTs-b.minTs);
+  // also keep dates for secondary uses
+  const set={};S.all.forEach(m=>{if(m.s===S.cur)set[algDate(m.ts)]=1});
+  S.dates=Object.keys(set).sort();
+  const now=Date.now();
+  // current round: first with any unfinished match; else last
+  let i=S.rounds.findIndex(r=>r.done<r.n);
+  if(i<0)i=Math.max(S.rounds.length-1,0);
+  // if current round fully in the past beyond next, prefer upcoming
+  const up=S.rounds.findIndex(r=>r.minTs>now);
+  if(up>=0 && S.rounds[i] && S.rounds[i].maxTs<now-DAY)i=up;
+  S.idx=i;
+}
+function roundMatches(){
+  if(!S.rounds.length)return [];
+  const rk=S.rounds[S.idx].key;
+  return S.all.filter(m=>m.s===S.cur&&roundKey(m)===rk).sort((a,b)=>a.ts-b.ts);
+}
+function buildDates(){buildRounds()} // alias for existing callers
+function dayMatches(){return roundMatches()}
+
+function lockRound(ms){
+  const now=Date.now(); let n=0;
+  if(!S.rounds.length||!S.state)return 0;
+  const cur=S.rounds[S.idx];
+  // lock only matches in this round that haven't started and have no score
+  ms.forEach(m=>{
+    const id=mid(m);
+    if(S.preds[id]||m.ts<=now||m.gh!==null)return;
+    const p=predictMatch(S.state,m);
+    S.preds[id]={id:id,d:m.d,ts:m.ts,h:m.h,a:m.a,r:roundKey(m),ph:p.h,pd:p.d,pa:p.a,ou:p.ou,btts:p.btts,lh:p.lh,la:p.la,we:p.we,wd:p.wd,ctx:p.context||null,pick:pickOf(p),at:now,res:null};
+    n++;
+  });
+  if(n)sSet(kPreds(),S.preds);
+  return n;
+}
+function lockDay(ms){return lockRound(ms)} // backward compat
+
+function settle(){const idx=new Map();S.all.forEach(m=>{if(m.gh!==null)idx.set(mid(m),m)});let n=0;
+Object.values(S.preds).forEach(p=>{if(p.res)return;let m=idx.get(p.id);
+if(!m){for(const x of idx.values()){if(x.h===p.h&&x.a===p.a&&Math.abs(x.ts-p.ts)<5*DAY){m=x;break}}}
+if(m){const o=outcome(m.gh,m.ga);p.res={gh:m.gh,ga:m.ga,o:o,hit:o===p.pick,at:Date.now()};n++}});
+if(n)sSet(kPreds(),S.preds);return n}
+
+function ratingsObj(){const o={};if(!S.state)return o;S.state.elo.forEach((v,k)=>{o[k]=(v.home+v.away)/2});return o}
+function updateSnapshot(){const old=sGet(kSnap(),null);const cur=ratingsObj();
+if(!old){sSet(kSnap(),{at:Date.now(),r:cur,delta:{}});return}
+const delta={};let ch=0;Object.keys(cur).forEach(k=>{if(old.r[k]!==undefined){delta[k]=cur[k]-old.r[k];ch=Math.max(ch,Math.abs(delta[k]))}});
+if(ch>0.05)sSet(kSnap(),{at:Date.now(),r:cur,delta:delta})}
+
+function stats(){const l=Object.values(S.preds);const done=l.filter(p=>p.res);const wk=done.filter(p=>p.ts>=Date.now()-7*DAY);
+return{total:l.length,done:done.length,hit:done.filter(p=>p.res.hit).length,wk:wk.length,wkHit:wk.filter(p=>p.res.hit).length,pending:l.length-done.length}}
+function pct(a,b){return b?Math.round(a*100/b)+'%':'—'}
+
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove('show'),3800)}
+function longDate(d){return new Date(d+'T12:00:00Z').toLocaleDateString('ar-DZ',{weekday:'long',day:'numeric',month:'long',timeZone:'UTC'})}
+function roundAr(r){return String(r).replace('Matchday','الجولة')}
+function pickLabel(m,pick){return pick==='h'?'فوز '+nm(m.h):pick==='a'?'فوز '+nm(m.a):'تعادل'}
+function bar(p){const a=Math.round(p.h*100),b=Math.round(p.d*100),c=Math.max(0,100-a-b);return '<div class="bar"><i class="bh" style="width:'+a+'%"></i><i class="bd" style="width:'+b+'%"></i><i class="ba" style="width:'+c+'%"></i></div><div class="bl"><span>محلي '+a+'%</span><span>تعادل '+b+'%</span><span>ضيف '+c+'%</span></div>'}
+function contextLine(ctx){
+  if(!ctx)return '';
+  const f=x=>x&&x.results&&x.results.length?x.results.join(' '):'—';
+  const rank=x=>x&&x.rank?'#'+x.rank:'—';
+  const h=ctx.h2h&&ctx.h2h.n>=3?ctx.h2h.results.join(' '):'غير كافٍ';
+  return '<div class="note-line">آخر 5: '+esc(f(ctx.homeForm))+' / '+esc(f(ctx.awayForm))+' · الترتيب: '+rank(ctx.homeStandings)+' / '+rank(ctx.awayStandings)+' · H2H: '+esc(h)+'</div>';
+}
+function markets(p){
+  const ou=Math.round((p.ou||0)*100), bt=Math.round((p.btts||0)*100);
+  return '<div class="markets"><div class="mkt">أكثر من 2.5<b>'+ou+'%</b></div><div class="mkt">كلا الفريقين يسجل<b>'+bt+'%</b></div></div><div class="xg-line">xG '+(p.lh||0).toFixed(2)+' – '+(p.la||0).toFixed(2)+'</div>';
+}
+
+function statusOf(m,now){
+  if(m.gh!==null)return{c:'pill-finished',t:'انتهت',icon:'<svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>'};
+  if(m.ts>now)return{c:'pill-upcoming',t:'مجدولة',icon:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>'};
+  if(now-m.ts<130*60000)return{c:'pill-wait',t:'جارية (المصدر غير لحظي)',icon:'<svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>'};
+  return{c:'pill-wait',t:'بانتظار تحديث البيانات',icon:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>'};
+}
+
+function card(m){const now=Date.now(),pred=S.preds[mid(m)],st=statusOf(m,now);
+const score=m.gh!==null?'<div class="score-text">'+m.gh+' - '+m.ga+'</div>':'';
+let body='';
+if(pred){const p={h:pred.ph,d:pred.pd,a:pred.pa,ou:pred.ou,btts:pred.btts,lh:pred.lh,la:pred.la};let mark='<span class="chip lock">مقفل</span>';
+if(pred.res)mark=pred.res.hit?'<span class="chip ok">أصاب</span>':'<span class="chip bad">أخطأ</span>';
+body=bar(p)+confidenceBar(p)+contextLine(p.context||null)+markets(p)+'<div class="pick-row"><span>المفضّل للعرض فقط: <b>'+esc(pickLabel(m,pred.pick))+'</b></span>'+mark+'</div>'}
+else if(m.ts>now&&S.state){const p=predictMatch(S.state,m);body=bar(p)+confidenceBar(p)+markets(p)+'<div class="pick-row"><span>المفضّل للعرض فقط: <b>'+esc(pickLabel(m,pickOf(p)))+'</b></span><span class="chip">تقدير مؤقت غير مقفل</span></div>'}
+else body='<div class="pick-row"><span class="chip">لا يوجد توقع محفوظ (بدأت المباراة قبل التحليل)</span></div>';
+return '<div class="match-card"><div class="round-tag">'+esc(roundAr(m.r))+'</div><div class="teams-row"><div class="team-info"><div class="team-logo-placeholder">'+esc(m.h.slice(0,3).toUpperCase())+'</div><span class="team-name">'+esc(nm(m.h))+'</span></div><div class="vs-center"><span class="time-text">'+algTime(m.ts)+'</span><span class="league-text">'+esc(lgInfo().short)+'</span>'+score+'</div><div class="team-info"><div class="team-logo-placeholder">'+esc(m.a.slice(0,3).toUpperCase())+'</div><span class="team-name">'+esc(nm(m.a))+'</span></div></div><div class="status-row"><span class="status-pill '+st.c+'">'+st.icon+st.t+'</span></div>'+body+'</div>'}
+
+function leagueBarHtml(){
+  let h='<div class="league-bar">';
+  LEAGUE_IDS.forEach(id=>{
+    const L=LEAGUES[id];
+    h+='<button class="league-chip'+(id===S.league?' active':'')+'" onclick="switchLeague(\''+id+'\')">'+esc(L.short)+'</button>';
+  });
+  return h+'</div>';
+}
+
+function renderToday(){const root=document.getElementById('today-root');
+let h=leagueBarHtml();
+if(!S.rounds.length){root.innerHTML=h+'<div class="no-data-msg">لا توجد مباريات في بيانات المصدر لهذا الدوري.</div>';return}
+const ms=roundMatches(), locked=lockRound(ms);
+const rd=S.rounds[S.idx];
+const now=Date.now();
+const status=rd.done===rd.n?'مكتملة':rd.minTs>now?'قادمة':rd.done>0?'جارية':'لم تبدأ';
+const dateFrom=algDate(rd.minTs), dateTo=algDate(rd.maxTs);
+const dateLabel=dateFrom===dateTo?longDate(dateFrom):(longDate(dateFrom)+' → '+longDate(dateTo));
+h+='<div class="section-header"><h2 class="section-title">'+esc(roundAr(rd.label))+' · '+esc(lgInfo().short)+'</h2><span class="date-badge">'+esc(status)+' · '+rd.done+'/'+rd.n+'</span></div>';
+h+='<div class="note-line" style="margin-top:0;margin-bottom:12px">'+esc(dateLabel)+'</div>';
+S.notes.forEach(n=>{h+='<div class="banner">'+esc(n)+'</div>'});
+if(locked)h+='<div class="banner">تم حساب وقفل '+locked+' توقع للجولة (لا يتغير بعد القفل).</div>';
+h+='<div class="day-nav"><button class="btn alt" onclick="moveRound(-1)"'+(S.idx<=0?' disabled':'')+'>الجولة السابقة</button><button class="btn alt" onclick="moveRound(1)"'+(S.idx>=S.rounds.length-1?' disabled':'')+'>الجولة التالية</button></div>';
+if(tgReady())h+='<button class="btn" style="margin-bottom:14px" onclick="tgSendToday()">إرسال تحليل الجولة إلى تليجرام</button>';
+h+=ms.map(card).join('');
+h+='<div class="note-line">'+esc(lgInfo().nameEn)+' · وضع الجولة · مزيج Elo + Dixon–Coles ('+MODEL_VERSION+') للبحث فقط. الأوقات بتوقيت الجزائر.</div>';
+root.innerHTML=h}
+
+async function switchLeague(id){
+  if(!LEAGUES[id]||id===S.league||S.busy)return;
+  S.busy=true;S.league=id;sSet(K_LEAGUE,id);
+  const sub=document.getElementById('headerSub');
+  if(sub)sub.textContent=lgInfo().name+' • Elo + Dixon–Coles';
+  document.getElementById('today-root').innerHTML=leagueBarHtml()+'<div class="loader-container"><div class="spinner"></div><p>جارِ تحميل '+esc(lgInfo().name)+'...</p></div>';
+  try{
+    const r=await loadData();
+    if(!r.ok){showError();S.busy=false;return}
+    afterLoad();
+    toast('تم التبديل إلى '+lgInfo().name);
+  }catch(e){showError()}
+  S.busy=false;
+}
+function moveRound(d){const n=S.idx+d;if(n<0||n>=S.rounds.length)return;S.idx=n;renderToday();renderReview();renderSummary()}
+function moveDay(d){moveRound(d)}
+
+function renderReview(){const root=document.getElementById('review-root');const now=Date.now();
+// المراجعة = مباريات انطلقت أو انتهت فقط (ليست الجولة القادمة المجدولة)
+const all=Object.values(S.preds);
+const list=all.filter(p=>p.res||p.ts<=now).sort((a,b)=>{
+  // المسوّاة أولاً ثم الأحدث
+  if(!!a.res!==!!b.res)return a.res? -1:1;
+  return b.ts-a.ts;
+});
+const upcoming=all.filter(p=>!p.res&&p.ts>now).length;
+let h=leagueBarHtml()+'<div class="section-header"><h2 class="section-title">المراجعة · '+esc(lgInfo().short)+'</h2></div>';
+h+='<button class="btn" id="updBtn" onclick="updateResults()"'+(S.busy?' disabled':'')+'>حدّث النتائج</button>';
+if(tgReady())h+='<button class="btn alt" style="margin-bottom:14px" onclick="tgSendYest()">إرسال نتائج الجولة السابقة</button>';
+if(upcoming)h+='<div class="note-line" style="margin-top:0">'+upcoming+' توقع مجدول للجولات القادمة — يظهر في شاشة «الجولة» فقط.</div>';
+if(!list.length){
+  h+='<div class="no-data-msg">'+(all.length
+    ?'لا مباريات للمراجعة بعد. كل التوقعات المقفلة ما زالت مجدولة (لم تنطلق). راجعها من شاشة الجولة.'
+    :'لا توجد توقعات مقفلة بعد. افتح شاشة «الجولة» لتُحسب وتُقفل توقعات الجولة.')+'</div>';
+  root.innerHTML=h;return;
+}
+const settled=list.filter(p=>p.res);
+const waiting=list.filter(p=>!p.res);
+if(settled.length){
+  h+='<div class="sub-title">تم التقييم ('+settled.length+')</div>';
+  settled.forEach(p=>{
+    const m={h:p.h,a:p.a};
+    const mark=p.res.hit?'<span class="chip ok">أصاب</span>':'<span class="chip bad">أخطأ</span>';
+    const sc='<div class="score-text">'+p.res.gh+' - '+p.res.ga+'</div>';
+    h+='<div class="match-card"><div class="round-tag">'+esc(longDate(algDate(p.ts)))+' • '+algTime(p.ts)+(p.r?' • '+esc(roundAr(p.r)):'')+'</div><div class="teams-row"><div class="team-info"><span class="team-name">'+esc(nm(p.h))+'</span></div><div class="vs-center">'+sc+'</div><div class="team-info"><span class="team-name">'+esc(nm(p.a))+'</span></div></div>'+bar({h:p.ph,d:p.pd,a:p.pa})+markets(p)+'<div class="pick-row"><span>التوقع: <b>'+esc(pickLabel(m,p.pick))+'</b></span>'+mark+'</div></div>';
+  });
+}
+if(waiting.length){
+  h+='<div class="sub-title">بانتظار النتيجة ('+waiting.length+')</div>';
+  waiting.forEach(p=>{
+    const m={h:p.h,a:p.a};
+    const mark=(now-p.ts>3*3600000)?'<span class="chip">بانتظار المصدر</span>':'<span class="chip">جارية</span>';
+    h+='<div class="match-card"><div class="round-tag">'+esc(longDate(algDate(p.ts)))+' • '+algTime(p.ts)+(p.r?' • '+esc(roundAr(p.r)):'')+'</div><div class="teams-row"><div class="team-info"><span class="team-name">'+esc(nm(p.h))+'</span></div><div class="vs-center"></div><div class="team-info"><span class="team-name">'+esc(nm(p.a))+'</span></div></div>'+bar({h:p.ph,d:p.pd,a:p.pa})+markets(p)+'<div class="pick-row"><span>التوقع: <b>'+esc(pickLabel(m,p.pick))+'</b></span>'+mark+'</div></div>';
+  });
+}
+root.innerHTML=h}
+
+/* ── Parameter robustness ── */
+const ROB_SWEEPS=[
+  {key:'K',label:'K (سرعة Elo)',values:[10,15,20,25,30,40]},
+  {key:'HFA',label:'HFA (أفضلية الأرض)',values:[20,30,40,48,60,80]},
+  {key:'ELO_HL',label:'نصف عمر Elo (يوم)',values:[60,100,160,220,300]},
+  {key:'REG',label:'REG (انحدار موسمي)',values:[0.05,0.10,0.15,0.22,0.30,0.40]},
+  {key:'PRIOR',label:'PRIOR (ديكن-كولز)',values:[2,4,8,12,20]}
+];
+
+function runRobustness(){
+  if(!S.all.length||S.robBusy)return;
+  S.robBusy=true;
+  renderSummary();
+  // yield to UI
+  setTimeout(()=>{
+    try{
+      const first=S.all.length?S.all[0].s:0;
+      const minSeason=Math.max(first+1,S.cur-1);
+      const base=defaultParams();
+      const results=[];
+      ROB_SWEEPS.forEach(sw=>{
+        const rows=[];
+        sw.values.forEach(v=>{
+          const P=Object.assign({},base); P[sw.key]=v;
+          const st=walk(S.all,Date.now(),minSeason,P);
+          const en=st.enM;
+          if(!en||!en.n){rows.push({v,n:0,acc:0,brier:0,bss:null,isBase:v===base[sw.key]});return}
+          const homeRate=en.home/en.n;
+          const brierHome=2*(1-homeRate);
+          const bss=brierSkill(en.brier,brierHome);
+          rows.push({v,n:en.n,acc:en.hit/en.n,brier:en.brier,bss:bss,isBase:v===base[sw.key]});
+        });
+        // best = lowest brier among rows with data
+        let bestB=Infinity;
+        rows.forEach(r=>{if(r.n&&r.brier<bestB)bestB=r.brier});
+        rows.forEach(r=>{r.isBest=r.n&&Math.abs(r.brier-bestB)<1e-9});
+        results.push({key:sw.key,label:sw.label,base:base[sw.key],rows});
+      });
+      S.robust=results;
+      toast('اكتمل اختبار المتانة');
+    }catch(e){toast('خطأ في اختبار المتانة');console.error(e)}
+    S.robBusy=false;
+    renderSummary();
+  },40);
+}
+
+function robustBlock(){
+  let h='<div class="sub-title">اختبار متانة المعاملات</div>';
+  h+='<div class="note-line">يُعاد تشغيل الـ walk-forward مع تغيير معامل واحد في كل مرة. الهضبة المستقرة = متانة جيدة. الحساسية الضيقة = خطر overfitting.</div>';
+  if(S.robBusy){
+    h+='<div class="loader-container" style="padding:24px 0"><div class="spinner"></div><p>جارِ اختبار المعاملات...</p></div>';
+    return h;
+  }
+  h+='<button class="btn alt" style="margin-bottom:12px" onclick="runRobustness()"'+(S.all.length?'':' disabled')+'>تشغيل اختبار المتانة</button>';
+  if(!S.robust)return h;
+  S.robust.forEach(sw=>{
+    h+='<div class="note-line" style="text-align:right;font-weight:700;color:var(--text-primary);margin:12px 0 4px">'+esc(sw.label)+' · الأساس = '+sw.base+'</div>';
+    h+='<table class="rob-table"><thead><tr><th>القيمة</th><th>دقة</th><th>Brier</th><th>BSS</th></tr></thead><tbody>';
+    sw.rows.forEach(r=>{
+      if(!r.n){h+='<tr><td class="dir">'+r.v+'</td><td colspan="3">—</td></tr>';return}
+      const cls=r.isBase?'base':(r.isBest?'best':'');
+      const bss=r.bss!=null?(r.bss*100).toFixed(1)+'%':'—';
+      h+='<tr class="'+cls+'"><td class="dir">'+r.v+(r.isBase?' ★':'')+(r.isBest&&!r.isBase?' ✓':'')+'</td>';
+      h+='<td>'+Math.round(r.acc*100)+'%</td><td class="dir">'+r.brier.toFixed(3)+'</td><td class="dir">'+bss+'</td></tr>';
+    });
+    h+='</tbody></table>';
+  });
+  h+='<div class="note-line">★ = القيمة الحالية · ✓ = أفضل Brier · الصف الأزرق = الأساس · الأخضر = الأفضل</div>';
+  return h;
+}
+
+function metricBlock(title,st,showSkill){
+  if(!st||!st.n)return '<div class="note-line">لا بيانات لـ '+esc(title)+'.</div>';
+  const homeRate=st.home/st.n;
+  const brierHome=2*(1-homeRate);
+  const brierUnif=2/3;
+  const bssHome=brierSkill(st.brier,brierHome);
+  const bssUnif=brierSkill(st.brier,brierUnif);
+  let h='<div class="sub-title">'+esc(title)+'</div>';
+  h+='<div class="summary-stat-row"><span class="stat-label">مباريات (out-of-sample)</span><span class="stat-val">'+st.n+'</span></div>';
+  h+='<div class="summary-stat-row"><span class="stat-label">دقة المفضّل (1X2)</span><span class="stat-val">'+pct(st.hit,st.n)+'</span></div>';
+  h+='<div class="summary-stat-row"><span class="stat-label">Brier (↓ أفضل)</span><span class="stat-val">'+st.brier.toFixed(3)+'</span></div>';
+  h+='<div class="summary-stat-row"><span class="stat-label">Log Loss (↓ أفضل)</span><span class="stat-val">'+st.logLoss.toFixed(3)+'</span></div>';
+  if(showSkill){
+    h+='<div class="summary-stat-row"><span class="stat-label">BSS vs فوز المحلي دائماً</span><span class="stat-val" style="color:'+(bssHome!=null&&bssHome>0?'var(--success)':'var(--danger)')+'">'+(bssHome!=null?(bssHome*100).toFixed(1)+'%':'—')+'</span></div>';
+    h+='<div class="summary-stat-row"><span class="stat-label">BSS vs تخمين متساوٍ</span><span class="stat-val" style="color:'+(bssUnif!=null&&bssUnif>0?'var(--success)':'var(--danger)')+'">'+(bssUnif!=null?(bssUnif*100).toFixed(1)+'%':'—')+'</span></div>';
+    h+='<div class="summary-stat-row"><span class="stat-label">خط أساس فوز المحلي</span><span class="stat-val">'+pct(st.home,st.n)+' دقة · Brier '+brierHome.toFixed(3)+'</span></div>';
+  }
+  return h;
+}
+function confBlock(st,title){
+  if(!st||!st.conf)return '';
+  const labels=['ثقة منخفضة (<48%)','ثقة متوسطة (48–60%)','ثقة مرتفعة (≥60%)'];
+  let h='<div class="sub-title">'+esc(title)+'</div>';
+  let any=false;
+  st.conf.forEach((c,i)=>{
+    if(!c.n)return; any=true;
+    h+='<div class="summary-stat-row"><span class="stat-label">'+labels[i]+'</span><span class="stat-val">'+c.hit+'/'+c.n+' ('+pct(c.hit,c.n)+')</span></div>';
+  });
+  if(!any)return '';
+  h+='<div class="note-line">إذا كانت الثقة المرتفعة تصيب أكثر من المنخفضة، فالنموذج يميّز جيداً بين الحالات السهلة والصعبة.</div>';
+  return h;
+}
+function lockedConfBlock(){
+  const buckets=lockedConfStats();
+  let any=false;
+  let h='<div class="sub-title">التوقعات المقفلة حسب الثقة</div>';
+  buckets.forEach(b=>{
+    if(!b.n)return; any=true;
+    h+='<div class="summary-stat-row"><span class="stat-label">'+b.label+'</span><span class="stat-val">'+b.hit+'/'+b.n+' ('+pct(b.hit,b.n)+')</span></div>';
+  });
+  if(!any)return '<div class="note-line">لا توجد توقعات مقفلة مُسوّاة بعد لتقسيم الثقة.</div>';
+  return h;
+}
+function calPlot(st){
+  if(!st||!st.n)return '';
+  let h='<div class="sub-title">معايرة احتمال فوز المحلي</div><div class="note-line">الشريط الأخضر = النسبة الفعلية · الخط الأزرق = متوسط التوقع. التطابق = معايرة جيدة.</div>';
+  st.bins.forEach((b,i)=>{
+    if(!b.n)return;
+    const lo=i*20, hi=(i+1)*20;
+    h+='<div class="cal-row"><span>'+lo+'–'+hi+'%</span><span class="cal-track"><i class="cal-act" style="width:'+Math.round(b.h*100)+'%"></i><i class="cal-pred" style="left:'+Math.round(b.p*100)+'%"></i></span><span>'+b.n+' · '+Math.round(b.h*100)+'%</span></div>';
+  });
+  return h;
+}
+
+function renderSummary(){const root=document.getElementById('summary-root');const st=stats();const bt=S.bt;
+const from=S.from==='live'?'مباشر':'من الذاكرة المحفوظة';
+let h=leagueBarHtml()+'<div class="section-header"><h2 class="section-title">ملخص · '+esc(lgInfo().name)+'</h2></div>';
+
+/* --- Locked live performance --- */
+h+='<div class="sub-title">التوقعات المقفلة (حية)</div>';
+if(tgReady())h+='<button class="btn" style="margin-bottom:12px" onclick="tgSendReport()">إرسال تقرير الأداء إلى تليجرام</button>';
+h+='<div class="summary-stat-row"><span class="stat-label">توقعات مقفلة</span><span class="stat-val">'+st.total+'</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">تمت تسويتها</span><span class="stat-val">'+st.done+'</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">بانتظار النتيجة</span><span class="stat-val">'+st.pending+'</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">الإصابة الكلية</span><span class="stat-val">'+st.hit+' / '+st.done+' ('+pct(st.hit,st.done)+')</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">آخر 7 أيام</span><span class="stat-val">'+st.wkHit+' / '+st.wk+' ('+pct(st.wkHit,st.wk)+')</span></div>';
+h+=lockedConfBlock();
+
+/* --- Walk-forward backtest --- */
+h+='<div class="sub-title">الاختبار الرجعي (Walk-Forward)</div>';
+if(bt&&bt.enM&&bt.enM.n){
+  const w=S.state?S.state.w:{elo:0.5,dc:0.5};
+  h+='<div class="model-card"><strong>منهجية الاختبار · '+MODEL_VERSION+'</strong><br>';
+  h+='✓ التنبؤ قبل معرفة النتيجة (لا look-ahead)<br>';
+  h+='✓ تحديث Elo / Dixon–Coles بعد التسجيل فقط<br>';
+  h+='✓ الأوزان = مقلوب Brier التراكمي (كل 20 مباراة بعد 24)<br>';
+  h+='✓ الموسم الأول للإحماء فقط · التقييم من الموسم التالي<br>';
+  h+='الأوزان الحالية: '+Math.round(w.elo*100)+'% Elo + '+Math.round(w.dc*100)+'% DC · ρ = '+(S.state?S.state.rho:RHO0).toFixed(2)+' · HFA = '+HFA+' · نصف عمر = '+ELO_HL+' يوم</div>';
+
+  h+=metricBlock('Ensemble (النموذج النهائي)',bt.enM,true);
+  if(bt.combined&&bt.combined.en){h+='<div class="summary-stat-row"><span class="stat-label">المعيار المشترك (55% Brier + 45% Log Loss)</span><span class="stat-val">'+(bt.combined.en.score!=null?bt.combined.en.score.toFixed(3):'—')+' · Skill '+(bt.combined.en.skill!=null?(bt.combined.en.skill*100).toFixed(1)+'%':'—')+'</span></div>';}
+  h+=confBlock(bt.enM,'Ensemble حسب مستوى الثقة');
+  h+=metricBlock('Elo المطوّر (منفرد)',bt.eloM,false);
+  h+=metricBlock('Dixon–Coles (منفرد)',bt.dcM,false);
+  h+=calPlot(bt.enM);
+  h+='<div class="note-line">BSS > 0 يعني أفضل من الخط الأساس. Brier المتساوي ≈ 0.667. الدقة وحدها مضلّلة لأن فوز المحلي شائع — اعتمد على Brier و BSS.</div>';
+}else h+='<div class="note-line">لا تتوفر مباريات كافية للاختبار الرجعي.</div>';
+
+/* --- Robustness --- */
+h+=robustBlock();
+
+/* --- Ratings --- */
+h+='<div class="sub-title">قوة الفرق (Elo أرض/خارج)</div>';
+const snap=sGet(kSnap(),null),delta=snap&&snap.delta?snap.delta:{};
+const teams=new Set();S.all.forEach(m=>{if(m.s===S.cur){teams.add(m.h);teams.add(m.a)}});
+const rows=Array.from(teams).map(t=>({t:t,v:R(t),hv:venue(t).home,av:venue(t).away})).sort((a,b)=>b.v-a.v);
+rows.forEach((x,i)=>{const d=delta[x.t];let ds='<span class="fl">—</span>';if(d!==undefined&&Math.abs(d)>=0.5)ds=d>0?'<span class="up">▲ '+d.toFixed(1)+'</span>':'<span class="dn">▼ '+Math.abs(d).toFixed(1)+'</span>';
+h+='<div class="rt-row"><span class="n">'+(i+1)+'</span><span class="t">'+esc(nm(x.t))+'</span><span class="v" title="أرض '+Math.round(x.hv)+' / خارج '+Math.round(x.av)+'">'+Math.round(x.v)+'</span><span class="d">'+ds+'</span></div>'});
+h+='<div class="note-line">الرقم متوسط تصنيف الأرض والخارج. التغيّر منذ آخر لقطة غيّرت الترتيب.</div>';
+
+/* --- Source --- */
+h+='<div class="sub-title">المصدر</div>';
+h+='<div class="summary-stat-row"><span class="stat-label">الدوري</span><span class="stat-val">'+esc(lgInfo().name)+' ('+esc(lgInfo().short)+')</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">البيانات</span><span class="stat-val" style="color:var(--warning)">OpenFootball (غير لحظي)</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">الموسم المعتمد</span><span class="stat-val">'+SEASONS[S.cur]+'</span></div>';
+h+='<div class="summary-stat-row"><span class="stat-label">آخر جلب</span><span class="stat-val">'+algTime(S.at)+' ('+from+')</span></div>';
+h+='<button class="btn danger" style="margin-top:16px" onclick="resetAll()">مسح التوقعات المحفوظة</button>';
+root.innerHTML=h}
+
+async function updateResults(){if(S.busy)return;S.busy=true;renderReview();
+try{const r=await loadData();if(!r.ok||r.from!=='live'){toast('تعذر الاتصال بالمصدر. لم يتم التحديث.');S.busy=false;renderReview();return}
+rebuild();const n=settle();updateSnapshot();buildDates();
+toast(n?'تمت تسوية '+n+' مباراة.':'لا توجد نتائج جديدة في المصدر بعد. المباريات المنتهية تبقى بانتظار التحديث.')}
+catch(e){toast('حدث خطأ أثناء التحديث.')}
+S.busy=false;renderToday();renderReview();renderSummary()}
+
+function resetAll(){if(!confirm('سيتم حذف كل التوقعات المحفوظة لهذا الدوري. هل أنت متأكد؟'))return;S.preds={};sSet(kPreds(),{});sSet(kSnap(),null);updateSnapshot();renderToday();renderReview();renderSummary();toast('تم المسح.')}
+
+function rebuild(){
+  const first=S.all.length?S.all[0].s:0;
+  const minSeason=Math.max(first+1,S.cur-1);
+  S.state=walk(S.all,Date.now(),minSeason);
+  S.bt={eloM:S.state.eloM,dcM:S.state.dcM,enM:S.state.enM,combined:S.state.combined,weightHistoryN:S.state.weightHistoryN};
+}
+
+function afterLoad(){rebuild();S.preds=sGet(kPreds(),{})||{};buildDates();if(!sGet(kSnap(),null))updateSnapshot();S.robust=null;renderToday();renderReview();renderSummary()}
+
+function showError(){document.getElementById('today-root').innerHTML='<div class="error-msg">تعذر الاتصال بمصدر البيانات ولا توجد بيانات محفوظة.<br>تأكد من الإنترنت ثم أعد المحاولة.</div><button class="btn" style="margin-top:14px" onclick="start()">إعادة المحاولة</button>'}
+
+async function start(){document.getElementById('today-root').innerHTML='<div class="loader-container"><div class="spinner"></div><p>جارِ جلب البيانات وحساب Ensemble...</p></div>';
+try{const r=await loadData();if(!r.ok){showError();return}afterLoad()}catch(e){showError()}}
+
+function switchScreen(name){SCREENS.forEach(s=>document.getElementById('screen-'+s).classList.remove('active'));document.getElementById('screen-'+name).classList.add('active');
+document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',SCREENS[i]===name));document.getElementById('main-content').scrollTop=0}
+
+function setTheme(name){const sun=document.getElementById('sunIcon'),moon=document.getElementById('moonIcon'),el=document.documentElement,btn=document.getElementById('themeBtn');
+if(name==='dark'){el.setAttribute('data-theme','dark');sun.classList.add('hide-icon');moon.classList.remove('hide-icon')}
+else{el.removeAttribute('data-theme');moon.classList.add('hide-icon');sun.classList.remove('hide-icon')}
+if(btn)btn.setAttribute('aria-pressed',name==='dark'?'true':'false');
+sSet(K_THEME,name)}
+
+/* ── Telegram ── */
+function tgCfg(){return sGet(K_TG,{token:'',chat:''})||{token:'',chat:''}}
+function tgReady(){const c=tgCfg();return !!(c.token&&c.token.length>20&&c.chat)}
+function tgUpdateUI(){
+  const ready=tgReady(),st=document.getElementById('tgStatus');
+  document.getElementById('tgSendToday').disabled=!ready;
+  document.getElementById('tgSendYest').disabled=!ready;
+  const rep=document.getElementById('tgSendReport'); if(rep)rep.disabled=!ready;
+  if(ready){st.className='settings-status ok';st.textContent='✓ متصل — جاهز للإرسال'}
+  else{st.className='settings-status';st.textContent=''}
+}
+function tgOpen(){
+  const c=tgCfg();
+  document.getElementById('tgToken').value=c.token||'';
+  document.getElementById('tgChat').value=c.chat||'';
+  tgUpdateUI();
+  document.getElementById('settingsOverlay').classList.add('open');
+}
+function tgClose(){document.getElementById('settingsOverlay').classList.remove('open')}
+function tgSave(){
+  const token=document.getElementById('tgToken').value.trim();
+  const chat=document.getElementById('tgChat').value.trim();
+  if(!token||token.length<20){toast('أدخل Bot Token صحيح');return}
+  if(!chat){toast('أدخل Chat ID');return}
+  sSet(K_TG,{token,chat});
+  tgUpdateUI();
+  toast('تم حفظ إعدادات تليجرام');
+}
+async function tgSend(text){
+  const c=tgCfg();
+  if(!c.token||!c.chat){toast('اضبط التوكن و Chat ID أولاً');return false}
+  try{
+    const r=await fetch('https://api.telegram.org/bot'+c.token+'/sendMessage',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chat_id:c.chat,text:text,parse_mode:'HTML',disable_web_page_preview:true})
+    });
+    const j=await r.json();
+    if(!j.ok){toast('خطأ تليجرام: '+(j.description||r.status));return false}
+    return true;
+  }catch(e){toast('تعذر الاتصال بتليجرام');return false}
+}
+
+function fmtPick(p){return p==='h'?'فوز محلي':p==='a'?'فوز ضيف':'تعادل'}
+function fmtPct(x){return Math.round((x||0)*100)+'%'}
+
+function tgEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function buildTodayMsg(){
+  if(!S.rounds.length||!S.state)return null;
+  const rd=S.rounds[S.idx];
+  const ms=roundMatches();
+  if(!ms.length)return null;
+  const title=roundAr(rd.label)+' · '+rd.done+'/'+rd.n;
+  let lines=['🔮 <b>ORACLE — تحليل الجولة</b>','🏆 '+tgEsc(lgInfo().name)+' ('+lgInfo().short+')','📅 '+tgEsc(title),'━━━━━━━━━━━━━━',''];
+  ms.forEach((m,i)=>{
+    const pred=S.preds[mid(m)];
+    let p;
+    if(pred)p={h:pred.ph,d:pred.pd,a:pred.pa,ou:pred.ou,btts:pred.btts,lh:pred.lh,la:pred.la,pick:pred.pick,locked:true};
+    else if(m.ts>Date.now()&&S.state){const x=predictMatch(S.state,m);p={h:x.h,d:x.d,a:x.a,ou:x.ou,btts:x.btts,lh:x.lh,la:x.la,pick:pickOf(x),locked:false}}
+    else if(m.gh!==null){
+      lines.push((i+1)+'. <b>'+tgEsc(nm(m.h))+'</b> '+m.gh+'–'+m.ga+' <b>'+tgEsc(nm(m.a))+'</b>');
+      lines.push('   (انتهت)');
+      lines.push('');
+      return;
+    } else return;
+    const conf=confidenceLabel(p);
+    lines.push((i+1)+'. <b>'+tgEsc(nm(m.h))+'</b> vs <b>'+tgEsc(nm(m.a))+'</b>');
+    lines.push('   🕐 '+algTime(m.ts)+' · '+algDate(m.ts));
+    lines.push('   📊 محلي '+fmtPct(p.h)+' | تعادل '+fmtPct(p.d)+' | ضيف '+fmtPct(p.a));
+    lines.push('   ⭐ المفضّل: <b>'+fmtPick(p.pick)+'</b> ('+conf+')');
+    lines.push('   ⚽ أكثر 2.5: '+fmtPct(p.ou)+' | BTTS: '+fmtPct(p.btts));
+    lines.push('   xG '+(p.lh||0).toFixed(2)+' – '+(p.la||0).toFixed(2)+(p.locked?' 🔒':''));
+    lines.push('');
+  });
+  lines.push('━━━━━━━━━━━━━━');
+  lines.push('<i>نموذج '+MODEL_VERSION+' • وضع الجولة • للبحث فقط</i>');
+  return lines.join('\n');
+}
+
+function buildYestMsg(){
+  if(!S.rounds.length)return null;
+  // previous fully completed round, or current if all done
+  let prev=-1;
+  for(let i=S.rounds.length-1;i>=0;i--){
+    if(S.rounds[i].done===S.rounds[i].n && S.rounds[i].n>0){prev=i;break}
+  }
+  if(prev<0)return null;
+  const rd=S.rounds[prev];
+  const ms=S.all.filter(m=>m.s===S.cur&&roundKey(m)===rd.key).sort((a,b)=>a.ts-b.ts);
+  if(!ms.length)return null;
+
+  let lines=['📋 <b>ORACLE — نتائج الجولة</b>','🏆 '+tgEsc(lgInfo().name),'📅 '+tgEsc(roundAr(rd.label)),'━━━━━━━━━━━━━━',''];
+  let hits=0, total=0;
+  ms.forEach((m,i)=>{
+    const pred=S.preds[mid(m)];
+    const score=m.gh!==null?(m.gh+' – '+m.ga):'—';
+    lines.push((i+1)+'. <b>'+tgEsc(nm(m.h))+'</b> '+score+' <b>'+tgEsc(nm(m.a))+'</b>');
+    if(pred){
+      total++;
+      const hit=pred.res?pred.res.hit:(m.gh!==null&&outcome(m.gh,m.ga)===pred.pick);
+      if(hit)hits++;
+      const mark=hit?'✅ أصاب':'❌ أخطأ';
+      lines.push('   التوقع: '+fmtPick(pred.pick)+' | محلي '+fmtPct(pred.ph)+' / تعادل '+fmtPct(pred.pd)+' / ضيف '+fmtPct(pred.pa));
+      lines.push('   '+mark);
+    }else{
+      lines.push('   (لا يوجد توقع مقفل)');
+    }
+    lines.push('');
+  });
+  if(total){
+    lines.push('━━━━━━━━━━━━━━');
+    lines.push('🎯 إصابة الجولة: <b>'+hits+'/'+total+'</b> ('+Math.round(hits*100/total)+'%)');
+  }
+  lines.push('<i>نموذج '+MODEL_VERSION+' • وضع الجولة • للبحث فقط</i>');
+  return lines.join('\n');
+}
+
+function buildBacktestMsg(){
+  const st=stats();
+  const bt=S.bt;
+  let lines=['📊 <b>ORACLE DAILY — تقرير الأداء</b>','🏆 '+tgEsc(lgInfo().name)+' ('+lgInfo().short+')','━━━━━━━━━━━━━━',''];
+
+  lines.push('<b>التوقعات المقفلة (حية)</b>');
+  lines.push('• مقفلة: '+st.total+' | مُسوّاة: '+st.done+' | معلّقة: '+st.pending);
+  lines.push('• الإصابة: <b>'+st.hit+'/'+st.done+' ('+pct(st.hit,st.done)+')</b>');
+  lines.push('• آخر 7 أيام: <b>'+st.wkHit+'/'+st.wk+' ('+pct(st.wkHit,st.wk)+')</b>');
+  lines.push('');
+
+  const buckets=lockedConfStats();
+  const confLines=buckets.filter(b=>b.n).map(b=>'  '+b.label+': '+b.hit+'/'+b.n+' ('+pct(b.hit,b.n)+')');
+  if(confLines.length){lines.push('<b>حسب الثقة (مقفلة)</b>');confLines.forEach(l=>lines.push(l));lines.push('')}
+
+  if(bt&&bt.enM&&bt.enM.n){
+    const en=bt.enM, w=S.state?S.state.w:{elo:0.5,dc:0.5};
+    const homeRate=en.home/en.n, brierHome=2*(1-homeRate);
+    const bssH=brierSkill(en.brier,brierHome), bssU=brierSkill(en.brier,2/3);
+    lines.push('<b>الاختبار الرجعي (Walk-Forward)</b>');
+    lines.push('• نموذج '+MODEL_VERSION+' · '+en.n+' مباراة out-of-sample');
+    lines.push('• أوزان: '+Math.round(w.elo*100)+'% Elo + '+Math.round(w.dc*100)+'% DC');
+    lines.push('• دقة Ensemble: <b>'+pct(en.hit,en.n)+'</b>');
+    lines.push('• Brier: <b>'+en.brier.toFixed(3)+'</b> · Log Loss: '+en.logLoss.toFixed(3));
+    if(bt.combined&&bt.combined.en)lines.push('• المعيار المشترك: <b>'+bt.combined.en.score.toFixed(3)+'</b> · Skill '+(bt.combined.en.skill*100).toFixed(1)+'% (55% Brier + 45% Log Loss)');
+    lines.push('• BSS vs فوز المحلي: '+(bssH!=null?(bssH*100).toFixed(1)+'%':'—'));
+    lines.push('• BSS vs متساوٍ: '+(bssU!=null?(bssU*100).toFixed(1)+'%':'—'));
+    lines.push('• خط أساس فوز المحلي: '+pct(en.home,en.n));
+    lines.push('');
+    if(bt.eloM&&bt.eloM.n)lines.push('• Elo منفرد: دقة '+pct(bt.eloM.hit,bt.eloM.n)+' · Brier '+bt.eloM.brier.toFixed(3));
+    if(bt.dcM&&bt.dcM.n)lines.push('• Dixon–Coles: دقة '+pct(bt.dcM.hit,bt.dcM.n)+' · Brier '+bt.dcM.brier.toFixed(3));
+    lines.push('');
+  }
+
+  // Best / worst teams by current Elo
+  const teams=new Set();
+  S.all.forEach(m=>{if(m.s===S.cur){teams.add(m.h);teams.add(m.a)}});
+  const rows=Array.from(teams).map(t=>({t,v:R(t)})).sort((a,b)=>b.v-a.v);
+  if(rows.length){
+    lines.push('<b>أقوى 5 فرق (Elo)</b>');
+    rows.slice(0,5).forEach((x,i)=>lines.push((i+1)+'. '+tgEsc(nm(x.t))+' — '+Math.round(x.v)));
+    lines.push('');
+    lines.push('<b>أضعف 5 فرق (Elo)</b>');
+    rows.slice(-5).reverse().forEach((x,i)=>lines.push((i+1)+'. '+tgEsc(nm(x.t))+' — '+Math.round(x.v)));
+    lines.push('');
+  }
+
+  lines.push('━━━━━━━━━━━━━━');
+  lines.push('<i>تنبؤ بدون معرفة النتيجة · للبحث فقط · ليس نصيحة رهان</i>');
+  return lines.join('\n');
+}
+
+async function tgSendToday(){
+  const msg=buildTodayMsg();
+  if(!msg){toast('لا توجد مباريات لإرسالها');return}
+  document.getElementById('tgSendToday').disabled=true;
+  const ok=await tgSend(msg);
+  document.getElementById('tgSendToday').disabled=!tgReady();
+  if(ok){toast('تم إرسال تحليل الجولة ✓');tgClose()}
+}
+async function tgSendYest(){
+  const msg=buildYestMsg();
+  if(!msg){toast('لا توجد جولة مكتملة بعد');return}
+  document.getElementById('tgSendYest').disabled=true;
+  const ok=await tgSend(msg);
+  document.getElementById('tgSendYest').disabled=!tgReady();
+  if(ok){toast('تم إرسال نتائج الجولة ✓');tgClose()}
+}
+async function tgSendReport(){
+  const msg=buildBacktestMsg();
+  if(!msg){toast('لا بيانات للتقرير');return}
+  const btn=document.getElementById('tgSendReport');
+  if(btn)btn.disabled=true;
+  const ok=await tgSend(msg);
+  if(btn)btn.disabled=!tgReady();
+  if(ok){toast('تم إرسال تقرير الأداء ✓');tgClose()}
+}
+
+function init(){
+  setTheme(sGet(K_THEME,'light'));
+  const saved=sGet(K_LEAGUE,'en.1');
+  S.league=LEAGUES[saved]?saved:'en.1';
+  const sub=document.getElementById('headerSub');
+  if(sub)sub.textContent=lgInfo().name+' • Elo + Dixon–Coles';
+  document.getElementById('themeBtn').addEventListener('click',()=>{setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')});
+  document.getElementById('settingsBtn').addEventListener('click',tgOpen);
+  document.getElementById('settingsClose').addEventListener('click',tgClose);
+  document.getElementById('settingsOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)tgClose()});
+  document.getElementById('tgSaveBtn').addEventListener('click',tgSave);
+  document.getElementById('tgSendToday').addEventListener('click',tgSendToday);
+  document.getElementById('tgSendYest').addEventListener('click',tgSendYest);
+  document.getElementById('tgSendReport').addEventListener('click',tgSendReport);
+  start();
+}
+if(typeof document!=='undefined')window.addEventListener('load',init);
+</script>
+</body>
+</html>
