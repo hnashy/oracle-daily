@@ -1,0 +1,86 @@
+name: Collect OddsHarvester Historic Odds
+
+on:
+  workflow_dispatch:
+    inputs:
+      league:
+        description: OddsHarvester league slug
+        required: true
+        default: england-premier-league
+      season:
+        description: Season in YYYY-YYYY format (e.g. 2024-2025)
+        required: true
+        default: "2024-2025"
+      max_pages:
+        description: Max pages to scrape (higher = more matches, slower)
+        required: false
+        default: "20"
+
+jobs:
+  collect-historic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install OddsHarvester and Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install oddsharvester
+          python -m playwright install --with-deps chromium
+
+      - name: Collect historic 1X2 odds with odds-history
+        env:
+          LEAGUE: ${{ inputs.league }}
+          SEASON: ${{ inputs.season }}
+          MAX_PAGES: ${{ inputs.max_pages }}
+        run: |
+          mkdir -p data/raw
+          OUTFILE="data/raw/${LEAGUE}_${SEASON}_odds_history.json"
+          echo "Collecting historic odds → $OUTFILE"
+          oddsharvester historic \
+            -s football \
+            -l "$LEAGUE" \
+            --season "$SEASON" \
+            --max-pages "$MAX_PAGES" \
+            -m 1x2 \
+            --odds-history \
+            --headless \
+            -f json \
+            -o "$OUTFILE"
+          echo "---"
+          echo "File size: $(du -h "$OUTFILE" | cut -f1)"
+          python -c "
+          import json, sys
+          from pathlib import Path
+          p = Path('$OUTFILE')
+          data = json.loads(p.read_text())
+          if isinstance(data, list):
+              n = len(data)
+          elif isinstance(data, dict):
+              n = len(data.get('matches') or data.get('data') or data.get('results') or [])
+          else:
+              n = 0
+          print(f'Records collected: {n}')
+          "
+
+      - name: Commit historic odds file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/*_odds_history.json
+          if git diff --cached --quiet; then
+            echo "No new data to commit"
+          else
+            git commit -m "chore: add OddsHarvester historic odds ${{ inputs.league }} ${{ inputs.season }}"
+            git push
+          fi
