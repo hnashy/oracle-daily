@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-15T18:04:42.708473Z",
+  "generated_at_utc": "2026-10-15T18:11:14.922547Z",
   "model_matches_trained": 380,
   "n_fixtures": 20,
   "predictions": [
@@ -20,7 +20,9 @@
       "market_weight": 0.0,
       "lh": 0.878,
       "la": 1.227,
-      "kickoff": "2026-10-17"
+      "kickoff": "2026-10-17",
+      "time": "12:30",
+      "round": "Matchday 7"
     },
     {
       "home": "Fulham FC",
@@ -39,7 +41,9 @@
       "market_weight": 0.0,
       "lh": 1.509,
       "la": 1.393,
-      "kickoff": "2026-10-17"
+      "kickoff": "2026-10-17",
+      "time": "15:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Manchester City FC",
@@ -58,7 +62,9 @@
       "market_weight": 0.0,
       "lh": 2.246,
       "la": 0.653,
-      "kickoff": "2026-10-17"
+      "kickoff": "2026-10-17",
+      "time": "15:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Brentford FC",
@@ -77,7 +83,9 @@
       "market_weight": 0.0,
       "lh": 1.352,
       "la": 1.987,
-      "kickoff": "2026-10-17"
+      "kickoff": "2026-10-17",
+      "time": "15:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Newcastle United FC",
@@ -96,7 +104,9 @@
       "market_weight": 0.0,
       "lh": 1.69,
       "la": 1.147,
-      "kickoff": "2026-10-17"
+      "kickoff": "2026-10-17",
+      "time": "17:30",
+      "round": "Matchday 7"
     },
     {
       "home": "AFC Bournemouth",
@@ -115,7 +125,9 @@
       "market_weight": 0.0,
       "lh": 1.716,
       "la": 1.374,
-      "kickoff": "2026-10-18"
+      "kickoff": "2026-10-18",
+      "time": "14:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Leeds United FC",
@@ -134,7 +146,9 @@
       "market_weight": 0.0,
       "lh": 1.438,
       "la": 1.48,
-      "kickoff": "2026-10-18"
+      "kickoff": "2026-10-18",
+      "time": "14:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Brighton & Hove Albion FC",
@@ -153,7 +167,9 @@
       "market_weight": 0.0,
       "lh": 1.728,
       "la": 1.314,
-      "kickoff": "2026-10-18"
+      "kickoff": "2026-10-18",
+      "time": "14:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Nottingham Forest FC",
@@ -172,7 +188,9 @@
       "market_weight": 0.0,
       "lh": 1.122,
       "la": 1.585,
-      "kickoff": "2026-10-18"
+      "kickoff": "2026-10-18",
+      "time": "16:30",
+      "round": "Matchday 7"
     },
     {
       "home": "Tottenham Hotspur FC",
@@ -191,7 +209,9 @@
       "market_weight": 0.0,
       "lh": 1.55,
       "la": 1.438,
-      "kickoff": "2026-10-19"
+      "kickoff": "2026-10-19",
+      "time": "20:00",
+      "round": "Matchday 7"
     },
     {
       "home": "Ipswich Town FC",
@@ -210,7 +230,9 @@
       "market_weight": 0.0,
       "lh": 1.156,
       "la": 1.642,
-      "kickoff": "2026-10-23"
+      "kickoff": "2026-10-23",
+      "time": "20:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Aston Villa FC",
@@ -229,7 +251,9 @@
       "market_weight": 0.0,
       "lh": 0.894,
       "la": 1.738,
-      "kickoff": "2026-10-24"
+      "kickoff": "2026-10-24",
+      "time": "12:30",
+      "round": "Matchday 8"
     },
     {
       "home": "Arsenal FC",
@@ -248,7 +272,9 @@
       "market_weight": 0.0,
       "lh": 1.328,
       "la": 0.917,
-      "kickoff": "2026-10-24"
+      "kickoff": "2026-10-24",
+      "time": "15:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Coventry City FC",
@@ -267,7 +293,9 @@
       "market_weight": 0.0,
       "lh": 1.485,
       "la": 1.416,
-      "kickoff": "2026-10-24"
+      "kickoff": "2026-10-24",
+      "time": "15:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Chelsea FC",
@@ -286,7 +314,9 @@
       "market_weight": 0.0,
       "lh": 1.8,
       "la": 0.939,
-      "kickoff": "2026-10-24"
+      "kickoff": "2026-10-24",
+      "time": "17:30",
+      "round": "Matchday 8"
     },
     {
       "home": "Liverpool FC",
@@ -305,7 +335,9 @@
       "market_weight": 0.0,
       "lh": 1.928,
       "la": 1.482,
-      "kickoff": "2026-10-25"
+      "kickoff": "2026-10-25",
+      "time": "14:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Crystal Palace FC",
@@ -324,7 +356,9 @@
       "market_weight": 0.0,
       "lh": 1.208,
       "la": 1.527,
-      "kickoff": "2026-10-25"
+      "kickoff": "2026-10-25",
+      "time": "14:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Manchester United FC",
@@ -343,7 +377,9 @@
       "market_weight": 0.0,
       "lh": 1.526,
       "la": 1.53,
-      "kickoff": "2026-10-25"
+      "kickoff": "2026-10-25",
+      "time": "14:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Hull City AFC",
@@ -362,7 +398,9 @@
       "market_weight": 0.0,
       "lh": 1.481,
       "la": 1.562,
-      "kickoff": "2026-10-25"
+      "kickoff": "2026-10-25",
+      "time": "14:00",
+      "round": "Matchday 8"
     },
     {
       "home": "Sunderland AFC",
@@ -381,7 +419,9 @@
       "market_weight": 0.0,
       "lh": 1.513,
       "la": 1.42,
-      "kickoff": "2026-10-25"
+      "kickoff": "2026-10-25",
+      "time": "16:30",
+      "round": "Matchday 8"
     }
   ]
 }
