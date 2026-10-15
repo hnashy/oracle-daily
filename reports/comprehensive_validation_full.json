@@ -1,0 +1,245 @@
+{
+  "generatedAt": "2026-10-15T01:11:40.229361Z",
+  "stages": {
+    "stage1_data_quality": {
+      "records": 380,
+      "missing": {
+        "match_date": {
+          "count": 141,
+          "rate": 0.37105263157894736
+        },
+        "home_score": {
+          "count": 18,
+          "rate": 0.04736842105263158
+        },
+        "away_score": {
+          "count": 18,
+          "rate": 0.04736842105263158
+        }
+      },
+      "date_min": "2024-08-16",
+      "date_max": "2025-05-25",
+      "unique_dates": 68,
+      "scores": 362,
+      "mean_home_goals": 1.5027624309392265,
+      "mean_away_goals": 1.4060773480662982,
+      "max_team_goals": 7,
+      "bookmakers_median": 6.0,
+      "bookmakers_min": 4
+    },
+    "stage2_full_season_status": {
+      "available_records": 380,
+      "matched_records": 156,
+      "coverage": 0.4105263157894737,
+      "preKickoffQuotes": true,
+      "status": "full_collection_incomplete_pre_match_timestamps",
+      "usable_kickoff_records": 239,
+      "coverage_of_collected_records": 0.6527196652719666
+    },
+    "stage3_calibration": {
+      "method": "chronological temperature scaling",
+      "train_n": 93,
+      "test_n": 63,
+      "temperature": 0.52,
+      "raw_test": {
+        "n": 63,
+        "accuracy": 0.47619047619047616,
+        "brier": 0.5826485080807656,
+        "logLoss": 0.9766090033839488
+      },
+      "calibrated_test": {
+        "n": 63,
+        "accuracy": 0.47619047619047616,
+        "brier": 0.5942574443767765,
+        "logLoss": 0.9861801925023256
+      },
+      "raw_bins": [
+        {
+          "range": "0.0-0.2",
+          "n": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "range": "0.2-0.4",
+          "n": 7,
+          "confidence": 0.37889251593279466,
+          "accuracy": 0.0
+        },
+        {
+          "range": "0.4-0.6",
+          "n": 46,
+          "confidence": 0.47688076665272683,
+          "accuracy": 0.4782608695652174
+        },
+        {
+          "range": "0.6-0.8",
+          "n": 10,
+          "confidence": 0.648305115602145,
+          "accuracy": 0.8
+        },
+        {
+          "range": "0.8-1.0",
+          "n": 0,
+          "confidence": null,
+          "accuracy": null
+        }
+      ],
+      "calibrated_bins": [
+        {
+          "range": "0.0-0.2",
+          "n": 0,
+          "confidence": null,
+          "accuracy": null
+        },
+        {
+          "range": "0.2-0.4",
+          "n": 1,
+          "confidence": 0.39273324801952125,
+          "accuracy": 0.0
+        },
+        {
+          "range": "0.4-0.6",
+          "n": 30,
+          "confidence": 0.5059399510255758,
+          "accuracy": 0.3333333333333333
+        },
+        {
+          "range": "0.6-0.8",
+          "n": 22,
+          "confidence": 0.6932796632295476,
+          "accuracy": 0.5454545454545454
+        },
+        {
+          "range": "0.8-1.0",
+          "n": 10,
+          "confidence": 0.8512031224603929,
+          "accuracy": 0.8
+        }
+      ]
+    },
+    "stage4_market_ensemble": {
+      "method": "chronological grid over probability blend; no ML claim with tiny sample",
+      "weights": [
+        {
+          "model_weight": 0,
+          "test": {
+            "n": 63,
+            "accuracy": 0.5238095238095238,
+            "brier": 0.588056441448355,
+            "logLoss": 0.9800694694575715
+          }
+        },
+        {
+          "model_weight": 0.25,
+          "test": {
+            "n": 63,
+            "accuracy": 0.5396825396825397,
+            "brier": 0.5846020625688234,
+            "logLoss": 0.9731076424545765
+          }
+        },
+        {
+          "model_weight": 0.5,
+          "test": {
+            "n": 63,
+            "accuracy": 0.49206349206349204,
+            "brier": 0.584484103430383,
+            "logLoss": 0.9718288190998166
+          }
+        },
+        {
+          "model_weight": 0.75,
+          "test": {
+            "n": 63,
+            "accuracy": 0.5079365079365079,
+            "brier": 0.5877025640330341,
+            "logLoss": 0.9760554008615259
+          }
+        },
+        {
+          "model_weight": 1,
+          "test": {
+            "n": 63,
+            "accuracy": 0.47619047619047616,
+            "brier": 0.5942574443767765,
+            "logLoss": 0.9861801925023256
+          }
+        }
+      ],
+      "selected": {
+        "model_weight": 0.5,
+        "test": {
+          "n": 63,
+          "accuracy": 0.49206349206349204,
+          "brier": 0.584484103430383,
+          "logLoss": 0.9718288190998166
+        }
+      }
+    },
+    "stage5_ablation": {
+      "component_ablation": {
+        "elo": {
+          "n": 63,
+          "accuracy": 0.5238095238095238,
+          "brier": 0.5861644982506495,
+          "logLoss": 0.9804395033342692
+        },
+        "dixon_coles": {
+          "n": 63,
+          "accuracy": 0.5238095238095238,
+          "brier": 0.580019697645762,
+          "logLoss": 0.975439587706849
+        },
+        "ensemble": {
+          "n": 63,
+          "accuracy": 0.47619047619047616,
+          "brier": 0.5826485080807656,
+          "logLoss": 0.9766090033839488
+        }
+      },
+      "feature_level_status": "unavailable in current capture; do not infer H2H/Form/Standings importance from component comparison"
+    },
+    "stage6_ev_clv": {
+      "ev_thresholds": {
+        "0": {
+          "bets": 57,
+          "roi": -0.0775438596491228,
+          "ci95_low": -0.4552631578947368,
+          "ci95_high": 0.3412280701754386
+        },
+        "0.05": {
+          "bets": 47,
+          "roi": 0.026595744680851074,
+          "ci95_low": -0.4319148936170213,
+          "ci95_high": 0.5259574468085106
+        },
+        "0.1": {
+          "bets": 42,
+          "roi": 0.019047619047619063,
+          "ci95_low": -0.48,
+          "ci95_high": 0.5642857142857144
+        }
+      },
+      "clv_status": "proxy only: no independent closing snapshot; true CLV unavailable"
+    },
+    "stage7_freeze_monitoring": {
+      "status": "not frozen",
+      "early_warning_signals": [
+        "rolling Log Loss +20% vs baseline",
+        "rolling Brier +15% vs baseline",
+        "match linkage below 95%",
+        "missing pre-kickoff odds",
+        "calibration gap above 0.08"
+      ],
+      "retrain_trigger": "any signal sustained for 50 evaluated matches"
+    }
+  },
+  "limitations": [
+    "sample is small",
+    "16 of 50 records did not match current model names",
+    "true CLV requires an independent closing-line snapshot",
+    "feature-level ablation requires a capture with raw/no-context/form/standings/H2H variants",
+    "141 من 380 سجلًا يفتقد match_date، لذلك لا يدخل الاختبار الزمني رغم اكتمال جمع الصفحات."
+  ]
+}
