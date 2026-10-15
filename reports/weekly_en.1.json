@@ -1,0 +1,387 @@
+{
+  "generated_at_utc": "2026-10-15T18:04:42.708473Z",
+  "model_matches_trained": 380,
+  "n_fixtures": 20,
+  "predictions": [
+    {
+      "home": "Everton FC",
+      "away": "Chelsea FC",
+      "prob_h": 0.2539,
+      "prob_d": 0.314,
+      "prob_a": 0.432,
+      "pick": "a",
+      "confidence": 0.432,
+      "internal": {
+        "h": 0.2539,
+        "d": 0.314,
+        "a": 0.432
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 0.878,
+      "la": 1.227,
+      "kickoff": "2026-10-17"
+    },
+    {
+      "home": "Fulham FC",
+      "away": "Hull City AFC",
+      "prob_h": 0.393,
+      "prob_d": 0.2657,
+      "prob_a": 0.3413,
+      "pick": "h",
+      "confidence": 0.393,
+      "internal": {
+        "h": 0.393,
+        "d": 0.2657,
+        "a": 0.3413
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.509,
+      "la": 1.393,
+      "kickoff": "2026-10-17"
+    },
+    {
+      "home": "Manchester City FC",
+      "away": "Ipswich Town FC",
+      "prob_h": 0.7297,
+      "prob_d": 0.1841,
+      "prob_a": 0.0862,
+      "pick": "h",
+      "confidence": 0.7297,
+      "internal": {
+        "h": 0.7297,
+        "d": 0.1841,
+        "a": 0.0862
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 2.246,
+      "la": 0.653,
+      "kickoff": "2026-10-17"
+    },
+    {
+      "home": "Brentford FC",
+      "away": "Liverpool FC",
+      "prob_h": 0.2527,
+      "prob_d": 0.233,
+      "prob_a": 0.5144,
+      "pick": "a",
+      "confidence": 0.5144,
+      "internal": {
+        "h": 0.2527,
+        "d": 0.233,
+        "a": 0.5144
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.352,
+      "la": 1.987,
+      "kickoff": "2026-10-17"
+    },
+    {
+      "home": "Newcastle United FC",
+      "away": "Aston Villa FC",
+      "prob_h": 0.4914,
+      "prob_d": 0.2589,
+      "prob_a": 0.2497,
+      "pick": "h",
+      "confidence": 0.4914,
+      "internal": {
+        "h": 0.4914,
+        "d": 0.2589,
+        "a": 0.2497
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.69,
+      "la": 1.147,
+      "kickoff": "2026-10-17"
+    },
+    {
+      "home": "AFC Bournemouth",
+      "away": "Sunderland AFC",
+      "prob_h": 0.4475,
+      "prob_d": 0.2525,
+      "prob_a": 0.3,
+      "pick": "h",
+      "confidence": 0.4475,
+      "internal": {
+        "h": 0.4475,
+        "d": 0.2525,
+        "a": 0.3
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.716,
+      "la": 1.374,
+      "kickoff": "2026-10-18"
+    },
+    {
+      "home": "Leeds United FC",
+      "away": "Manchester United FC",
+      "prob_h": 0.358,
+      "prob_d": 0.2653,
+      "prob_a": 0.3767,
+      "pick": "a",
+      "confidence": 0.3767,
+      "internal": {
+        "h": 0.358,
+        "d": 0.2653,
+        "a": 0.3767
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.438,
+      "la": 1.48,
+      "kickoff": "2026-10-18"
+    },
+    {
+      "home": "Brighton & Hove Albion FC",
+      "away": "Crystal Palace FC",
+      "prob_h": 0.4631,
+      "prob_d": 0.2531,
+      "prob_a": 0.2838,
+      "pick": "h",
+      "confidence": 0.4631,
+      "internal": {
+        "h": 0.4631,
+        "d": 0.2531,
+        "a": 0.2838
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.728,
+      "la": 1.314,
+      "kickoff": "2026-10-18"
+    },
+    {
+      "home": "Nottingham Forest FC",
+      "away": "Arsenal FC",
+      "prob_h": 0.2602,
+      "prob_d": 0.2689,
+      "prob_a": 0.4709,
+      "pick": "a",
+      "confidence": 0.4709,
+      "internal": {
+        "h": 0.2602,
+        "d": 0.2689,
+        "a": 0.4709
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.122,
+      "la": 1.585,
+      "kickoff": "2026-10-18"
+    },
+    {
+      "home": "Tottenham Hotspur FC",
+      "away": "Coventry City FC",
+      "prob_h": 0.3942,
+      "prob_d": 0.2612,
+      "prob_a": 0.3446,
+      "pick": "h",
+      "confidence": 0.3942,
+      "internal": {
+        "h": 0.3942,
+        "d": 0.2612,
+        "a": 0.3446
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.55,
+      "la": 1.438,
+      "kickoff": "2026-10-19"
+    },
+    {
+      "home": "Ipswich Town FC",
+      "away": "Nottingham Forest FC",
+      "prob_h": 0.2593,
+      "prob_d": 0.2632,
+      "prob_a": 0.4776,
+      "pick": "a",
+      "confidence": 0.4776,
+      "internal": {
+        "h": 0.2593,
+        "d": 0.2632,
+        "a": 0.4776
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.156,
+      "la": 1.642,
+      "kickoff": "2026-10-23"
+    },
+    {
+      "home": "Aston Villa FC",
+      "away": "Manchester City FC",
+      "prob_h": 0.1827,
+      "prob_d": 0.2534,
+      "prob_a": 0.5639,
+      "pick": "a",
+      "confidence": 0.5639,
+      "internal": {
+        "h": 0.1827,
+        "d": 0.2534,
+        "a": 0.5639
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 0.894,
+      "la": 1.738,
+      "kickoff": "2026-10-24"
+    },
+    {
+      "home": "Arsenal FC",
+      "away": "Everton FC",
+      "prob_h": 0.4514,
+      "prob_d": 0.3006,
+      "prob_a": 0.248,
+      "pick": "h",
+      "confidence": 0.4514,
+      "internal": {
+        "h": 0.4514,
+        "d": 0.3006,
+        "a": 0.248
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.328,
+      "la": 0.917,
+      "kickoff": "2026-10-24"
+    },
+    {
+      "home": "Coventry City FC",
+      "away": "Fulham FC",
+      "prob_h": 0.3821,
+      "prob_d": 0.2661,
+      "prob_a": 0.3517,
+      "pick": "h",
+      "confidence": 0.3821,
+      "internal": {
+        "h": 0.3821,
+        "d": 0.2661,
+        "a": 0.3517
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.485,
+      "la": 1.416,
+      "kickoff": "2026-10-24"
+    },
+    {
+      "home": "Chelsea FC",
+      "away": "Tottenham Hotspur FC",
+      "prob_h": 0.5674,
+      "prob_d": 0.2473,
+      "prob_a": 0.1853,
+      "pick": "h",
+      "confidence": 0.5674,
+      "internal": {
+        "h": 0.5674,
+        "d": 0.2473,
+        "a": 0.1853
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.8,
+      "la": 0.939,
+      "kickoff": "2026-10-24"
+    },
+    {
+      "home": "Liverpool FC",
+      "away": "Brighton & Hove Albion FC",
+      "prob_h": 0.4736,
+      "prob_d": 0.236,
+      "prob_a": 0.2904,
+      "pick": "h",
+      "confidence": 0.4736,
+      "internal": {
+        "h": 0.4736,
+        "d": 0.236,
+        "a": 0.2904
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.928,
+      "la": 1.482,
+      "kickoff": "2026-10-25"
+    },
+    {
+      "home": "Crystal Palace FC",
+      "away": "Newcastle United FC",
+      "prob_h": 0.2913,
+      "prob_d": 0.2717,
+      "prob_a": 0.437,
+      "pick": "a",
+      "confidence": 0.437,
+      "internal": {
+        "h": 0.2913,
+        "d": 0.2717,
+        "a": 0.437
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.208,
+      "la": 1.527,
+      "kickoff": "2026-10-25"
+    },
+    {
+      "home": "Manchester United FC",
+      "away": "AFC Bournemouth",
+      "prob_h": 0.3699,
+      "prob_d": 0.2581,
+      "prob_a": 0.3719,
+      "pick": "a",
+      "confidence": 0.3719,
+      "internal": {
+        "h": 0.3699,
+        "d": 0.2581,
+        "a": 0.3719
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.526,
+      "la": 1.53,
+      "kickoff": "2026-10-25"
+    },
+    {
+      "home": "Hull City AFC",
+      "away": "Brentford FC",
+      "prob_h": 0.3531,
+      "prob_d": 0.2586,
+      "prob_a": 0.3883,
+      "pick": "a",
+      "confidence": 0.3883,
+      "internal": {
+        "h": 0.3531,
+        "d": 0.2586,
+        "a": 0.3883
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.481,
+      "la": 1.562,
+      "kickoff": "2026-10-25"
+    },
+    {
+      "home": "Sunderland AFC",
+      "away": "Leeds United FC",
+      "prob_h": 0.3885,
+      "prob_d": 0.2642,
+      "prob_a": 0.3473,
+      "pick": "h",
+      "confidence": 0.3885,
+      "internal": {
+        "h": 0.3885,
+        "d": 0.2642,
+        "a": 0.3473
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.513,
+      "la": 1.42,
+      "kickoff": "2026-10-25"
+    }
+  ]
+}
