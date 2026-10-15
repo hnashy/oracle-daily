@@ -12,14 +12,22 @@ on:
         required: true
         default: "2024-2025"
       max_pages:
-        description: Max pages to scrape (higher = more matches, slower)
+        description: Max pages to scrape (start low, e.g. 3-5)
         required: false
-        default: "20"
+        default: "5"
+      with_odds_history:
+        description: Include odds movement history (slower, more likely to be blocked)
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 jobs:
   collect-historic:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     permissions:
       contents: write
 
@@ -38,28 +46,73 @@ jobs:
           python -m pip install oddsharvester
           python -m playwright install --with-deps chromium
 
-      - name: Collect historic 1X2 odds with odds-history
+      - name: Collect historic odds
         env:
           LEAGUE: ${{ inputs.league }}
           SEASON: ${{ inputs.season }}
           MAX_PAGES: ${{ inputs.max_pages }}
+          WITH_HISTORY: ${{ inputs.with_odds_history }}
         run: |
+          set -e
           mkdir -p data/raw
           OUTFILE="data/raw/${LEAGUE}_${SEASON}_odds_history.json"
-          echo "Collecting historic odds → $OUTFILE"
+
+          echo "=== Stage 1: Collect match links only ==="
+          oddsharvester historic \
+            -s football \
+            -l "$LEAGUE" \
+            --season "$SEASON" \
+            --max-pages "$MAX_PAGES" \
+            --links-only \
+            --headless \
+            -f json \
+            -o data/raw/links_tmp.json || true
+
+          if [ -f data/raw/links_tmp.json ]; then
+            echo "Links file size: $(du -h data/raw/links_tmp.json | cut -f1)"
+            python -c "
+          import json
+          from pathlib import Path
+          p = Path('data/raw/links_tmp.json')
+          data = json.loads(p.read_text())
+          n = len(data) if isinstance(data, list) else len(data.get('matches') or data.get('data') or [])
+          print(f'Links collected: {n}')
+          " || true
+          else
+            echo "WARNING: links-only stage produced no file"
+          fi
+
+          echo ""
+          echo "=== Stage 2: Full historic scrape ==="
+          HISTORY_FLAG=""
+          if [ "$WITH_HISTORY" = "true" ]; then
+            HISTORY_FLAG="--odds-history"
+            echo "Odds history enabled (slower / higher block risk)"
+          else
+            echo "Odds history disabled (more reliable on GitHub Actions)"
+          fi
+
+          set +e
           oddsharvester historic \
             -s football \
             -l "$LEAGUE" \
             --season "$SEASON" \
             --max-pages "$MAX_PAGES" \
             -m 1x2 \
-            --odds-history \
+            $HISTORY_FLAG \
             --headless \
             -f json \
             -o "$OUTFILE"
-          echo "---"
-          echo "File size: $(du -h "$OUTFILE" | cut -f1)"
-          python -c "
+          EXIT_CODE=$?
+          set -e
+
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "WARNING: oddsharvester exited with code $EXIT_CODE"
+          fi
+
+          if [ -f "$OUTFILE" ]; then
+            echo "Output file size: $(du -h "$OUTFILE" | cut -f1)"
+            python -c "
           import json, sys
           from pathlib import Path
           p = Path('$OUTFILE')
@@ -71,13 +124,20 @@ jobs:
           else:
               n = 0
           print(f'Records collected: {n}')
+          if n == 0:
+              print('ERROR: zero records — OddsPortal likely blocked the scraper')
+              sys.exit(1)
           "
+          else
+            echo "ERROR: output file was not created"
+            exit 1
+          fi
 
       - name: Commit historic odds file
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw/*_odds_history.json
+          git add data/raw/*_odds_history.json || true
           if git diff --cached --quiet; then
             echo "No new data to commit"
           else
