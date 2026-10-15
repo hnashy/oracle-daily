@@ -1,0 +1,182 @@
+[
+  {
+    "home": "Frosinone Calcio",
+    "away": "US Sassuolo Calcio",
+    "date": "2026-10-16",
+    "time": "20:45",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Venezia FC",
+    "away": "SSC Napoli",
+    "date": "2026-10-17",
+    "time": "15:00",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Bologna FC 1909",
+    "away": "FC Internazionale Milano",
+    "date": "2026-10-17",
+    "time": "18:00",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "AS Roma",
+    "away": "Genoa CFC",
+    "date": "2026-10-17",
+    "time": "20:45",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Udinese Calcio",
+    "away": "US Lecce",
+    "date": "2026-10-18",
+    "time": "12:30",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "ACF Fiorentina",
+    "away": "Como 1907",
+    "date": "2026-10-18",
+    "time": "15:00",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "AC Milan",
+    "away": "Atalanta BC",
+    "date": "2026-10-18",
+    "time": "18:00",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Juventus FC",
+    "away": "SS Lazio",
+    "date": "2026-10-18",
+    "time": "20:45",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "AC Monza",
+    "away": "Cagliari Calcio",
+    "date": "2026-10-19",
+    "time": "18:30",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Parma Calcio 1913",
+    "away": "Torino FC",
+    "date": "2026-10-19",
+    "time": "20:45",
+    "round": "Matchday 7",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Torino FC",
+    "away": "AC Monza",
+    "date": "2026-10-23",
+    "time": "20:45",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Cagliari Calcio",
+    "away": "Bologna FC 1909",
+    "date": "2026-10-24",
+    "time": "15:00",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Como 1907",
+    "away": "US Sassuolo Calcio",
+    "date": "2026-10-24",
+    "time": "15:00",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "SSC Napoli",
+    "away": "AS Roma",
+    "date": "2026-10-24",
+    "time": "18:00",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "SS Lazio",
+    "away": "Parma Calcio 1913",
+    "date": "2026-10-24",
+    "time": "20:45",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "FC Internazionale Milano",
+    "away": "ACF Fiorentina",
+    "date": "2026-10-25",
+    "time": "12:30",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Atalanta BC",
+    "away": "Frosinone Calcio",
+    "date": "2026-10-25",
+    "time": "15:00",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Genoa CFC",
+    "away": "Venezia FC",
+    "date": "2026-10-25",
+    "time": "15:00",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "US Lecce",
+    "away": "Juventus FC",
+    "date": "2026-10-25",
+    "time": "18:00",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  },
+  {
+    "home": "Udinese Calcio",
+    "away": "AC Milan",
+    "date": "2026-10-25",
+    "time": "20:45",
+    "round": "Matchday 8",
+    "source": "openfootball",
+    "season": "2026-27"
+  }
+]

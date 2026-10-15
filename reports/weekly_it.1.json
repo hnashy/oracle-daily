@@ -1,0 +1,427 @@
+{
+  "generated_at_utc": "2026-10-15T18:11:16.323044Z",
+  "model_matches_trained": 380,
+  "n_fixtures": 20,
+  "predictions": [
+    {
+      "home": "Frosinone Calcio",
+      "away": "US Sassuolo Calcio",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-16",
+      "time": "20:45",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "Venezia FC",
+      "away": "SSC Napoli",
+      "prob_h": 0.2681,
+      "prob_d": 0.2816,
+      "prob_a": 0.4502,
+      "pick": "a",
+      "confidence": 0.4502,
+      "internal": {
+        "h": 0.2681,
+        "d": 0.2816,
+        "a": 0.4502
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.075,
+      "la": 1.462,
+      "kickoff": "2026-10-17",
+      "time": "15:00",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "Bologna FC 1909",
+      "away": "FC Internazionale Milano",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-17",
+      "time": "18:00",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "AS Roma",
+      "away": "Genoa CFC",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-17",
+      "time": "20:45",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "Udinese Calcio",
+      "away": "US Lecce",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-18",
+      "time": "12:30",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "ACF Fiorentina",
+      "away": "Como 1907",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-18",
+      "time": "15:00",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "AC Milan",
+      "away": "Atalanta BC",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-18",
+      "time": "18:00",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "Juventus FC",
+      "away": "SS Lazio",
+      "prob_h": 0.4752,
+      "prob_d": 0.2789,
+      "prob_a": 0.2459,
+      "pick": "h",
+      "confidence": 0.4752,
+      "internal": {
+        "h": 0.4752,
+        "d": 0.2789,
+        "a": 0.2459
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.504,
+      "la": 1.016,
+      "kickoff": "2026-10-18",
+      "time": "20:45",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "AC Monza",
+      "away": "Cagliari Calcio",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-19",
+      "time": "18:30",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "Parma Calcio 1913",
+      "away": "Torino FC",
+      "prob_h": 0.4609,
+      "prob_d": 0.3137,
+      "prob_a": 0.2254,
+      "pick": "h",
+      "confidence": 0.4609,
+      "internal": {
+        "h": 0.4609,
+        "d": 0.3137,
+        "a": 0.2254
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.254,
+      "la": 0.795,
+      "kickoff": "2026-10-19",
+      "time": "20:45",
+      "round": "Matchday 7"
+    },
+    {
+      "home": "Torino FC",
+      "away": "AC Monza",
+      "prob_h": 0.2675,
+      "prob_d": 0.3245,
+      "prob_a": 0.408,
+      "pick": "a",
+      "confidence": 0.408,
+      "internal": {
+        "h": 0.2675,
+        "d": 0.3245,
+        "a": 0.408
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 0.873,
+      "la": 1.143,
+      "kickoff": "2026-10-23",
+      "time": "20:45",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "Cagliari Calcio",
+      "away": "Bologna FC 1909",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-24",
+      "time": "15:00",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "Como 1907",
+      "away": "US Sassuolo Calcio",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-24",
+      "time": "15:00",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "SSC Napoli",
+      "away": "AS Roma",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-24",
+      "time": "18:00",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "SS Lazio",
+      "away": "Parma Calcio 1913",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-24",
+      "time": "20:45",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "FC Internazionale Milano",
+      "away": "ACF Fiorentina",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-25",
+      "time": "12:30",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "Atalanta BC",
+      "away": "Frosinone Calcio",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-25",
+      "time": "15:00",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "Genoa CFC",
+      "away": "Venezia FC",
+      "prob_h": 0.5099,
+      "prob_d": 0.2687,
+      "prob_a": 0.2213,
+      "pick": "h",
+      "confidence": 0.5099,
+      "internal": {
+        "h": 0.5099,
+        "d": 0.2687,
+        "a": 0.2213
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.604,
+      "la": 0.979,
+      "kickoff": "2026-10-25",
+      "time": "15:00",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "US Lecce",
+      "away": "Juventus FC",
+      "prob_h": 0.2947,
+      "prob_d": 0.2887,
+      "prob_a": 0.4166,
+      "pick": "a",
+      "confidence": 0.4166,
+      "internal": {
+        "h": 0.2947,
+        "d": 0.2887,
+        "a": 0.4166
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.115,
+      "la": 1.37,
+      "kickoff": "2026-10-25",
+      "time": "18:00",
+      "round": "Matchday 8"
+    },
+    {
+      "home": "Udinese Calcio",
+      "away": "AC Milan",
+      "prob_h": 0.385,
+      "prob_d": 0.286,
+      "prob_a": 0.329,
+      "pick": "h",
+      "confidence": 0.385,
+      "internal": {
+        "h": 0.385,
+        "d": 0.286,
+        "a": 0.329
+      },
+      "market": null,
+      "market_weight": 0.0,
+      "lh": 1.34,
+      "la": 1.221,
+      "kickoff": "2026-10-25",
+      "time": "20:45",
+      "round": "Matchday 8"
+    }
+  ]
+}
