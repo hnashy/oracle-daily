@@ -1,11 +1,9 @@
-name: ORACLE Weekly Predict + Learn
+name: ORACLE Weekly Multi-League
 
 on:
   schedule:
-    # Saturday 09:00 UTC — auto-fetch fixtures + predict + Telegram
-    - cron: "0 9 * * 6"
-    # Monday 10:00 UTC — auto-fetch results + learn + save model
-    - cron: "0 10 * * 1"
+    - cron: "0 9 * * 6"   # Saturday predict
+    - cron: "0 10 * * 1"  # Monday learn
   workflow_dispatch:
     inputs:
       mode:
@@ -13,35 +11,15 @@ on:
         required: true
         default: both
         type: choice
-        options:
-          - predict
-          - learn
-          - both
-      league:
-        description: "League key"
-        required: true
-        default: en.1
-        type: choice
-        options:
-          - en.1
-          - es.1
-          - it.1
-          - de.1
-          - fr.1
-      week_label:
-        description: "Telegram label"
-        required: false
-        default: "Matchweek"
+        options: [predict, learn, both]
       send_telegram:
-        description: "Send Telegram report"
+        description: "Send Telegram"
         required: false
         default: "true"
         type: choice
-        options:
-          - "true"
-          - "false"
+        options: ["true", "false"]
       season:
-        description: "OpenFootball season folder (auto = detect)"
+        description: "OpenFootball season (auto or 2026-27)"
         required: false
         default: auto
 
@@ -50,16 +28,18 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        league: [en.1, es.1, it.1, de.1, fr.1]
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -68,88 +48,81 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
             DOW=$(date -u +%u)
-            if [ "$DOW" = "6" ]; then
-              echo "mode=predict" >> $GITHUB_OUTPUT
-            else
-              echo "mode=learn" >> $GITHUB_OUTPUT
-            fi
+            if [ "$DOW" = "6" ]; then echo "mode=predict" >> $GITHUB_OUTPUT
+            else echo "mode=learn" >> $GITHUB_OUTPUT; fi
           else
             echo "mode=${{ inputs.mode }}" >> $GITHUB_OUTPUT
           fi
-          echo "league=${{ inputs.league || 'en.1' }}" >> $GITHUB_OUTPUT
-          echo "week=${{ inputs.week_label || 'Matchweek' }}" >> $GITHUB_OUTPUT
           echo "telegram=${{ inputs.send_telegram || 'true' }}" >> $GITHUB_OUTPUT
           echo "season=${{ inputs.season || 'auto' }}" >> $GITHUB_OUTPUT
 
-      - name: Ensure model exists
+      - name: Map model path
+        id: model
+        run: |
+          L="${{ matrix.league }}"
+          case "$L" in
+            en.1) echo "path=data/models/oracle_en1_2024-25.json" >> $GITHUB_OUTPUT ;;
+            es.1) echo "path=data/models/oracle_es1_2024-25.json" >> $GITHUB_OUTPUT ;;
+            it.1) echo "path=data/models/oracle_it1_2024-25.json" >> $GITHUB_OUTPUT ;;
+            de.1) echo "path=data/models/oracle_de1_2024-25.json" >> $GITHUB_OUTPUT ;;
+            fr.1) echo "path=data/models/oracle_fr1_2024-25.json" >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Ensure model
         run: |
           mkdir -p data/models data/raw/weekly reports
-          if [ ! -f data/models/oracle_en1_2024-25.json ]; then
-            echo "ERROR: missing data/models/oracle_en1_2024-25.json"
+          if [ ! -f "${{ steps.model.outputs.path }}" ]; then
+            echo "Missing model ${{ steps.model.outputs.path }}"
             exit 1
           fi
 
-      - name: Auto-fetch fixtures and results (OpenFootball)
+      - name: Auto-fetch OpenFootball
         run: |
           python tools/fetch_openfootball_week.py \
-            --league "${{ steps.mode.outputs.league }}" \
+            --league "${{ matrix.league }}" \
             --season "${{ steps.mode.outputs.season }}" \
-            --upcoming-days 10 \
-            --results-days 10 \
+            --upcoming-days 10 --results-days 10 \
             --out-dir data/raw/weekly
 
       - name: Predict + Telegram
         if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
         run: |
           set -e
-          FIXTURES="data/raw/weekly/fixtures_${{ steps.mode.outputs.league }}.json"
-          N=$(python -c "import json; print(len(json.load(open('$FIXTURES'))))")
-          echo "Upcoming fixtures: $N"
+          FIX="data/raw/weekly/fixtures_${{ matrix.league }}.json"
+          N=$(python -c "import json; print(len(json.load(open('$FIX'))))")
+          echo "${{ matrix.league }} upcoming: $N"
           if [ "$N" = "0" ]; then
-            echo "No upcoming fixtures in window — notify and exit successfully"
-            python - <<'PY'
-          import os, json, urllib.request
-          token, chat = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
-          text = "<b>ORACLE Weekly</b>\nNo upcoming fixtures in the next 10 days (OpenFootball)."
-          if token and chat:
-              body = json.dumps({"chat_id": chat, "text": text, "parse_mode": "HTML"}).encode()
-              urllib.request.urlopen(urllib.request.Request(
-                  f"https://api.telegram.org/bot{token}/sendMessage",
-                  data=body, headers={"Content-Type": "application/json"}), timeout=30)
-          PY
+            echo "No fixtures — skip"
             exit 0
           fi
           TG=""
           if [ "${{ steps.mode.outputs.telegram }}" = "true" ]; then TG="--telegram"; fi
-          python tools/weekly_pipeline.py predict "$FIXTURES" \
-            --model data/models/oracle_en1_2024-25.json \
-            --out "reports/weekly_${{ steps.mode.outputs.league }}.json" \
-            --league "${{ steps.mode.outputs.league }}" \
-            --week "${{ steps.mode.outputs.week }}" \
+          python tools/weekly_pipeline.py predict "$FIX" \
+            --model "${{ steps.model.outputs.path }}" \
+            --out "reports/weekly_${{ matrix.league }}.json" \
+            --league "${{ matrix.league }}" \
+            --week "Auto" \
             $TG
 
-      - name: Learn from recent results
+      - name: Learn
         if: steps.mode.outputs.mode == 'learn' || steps.mode.outputs.mode == 'both'
         run: |
           set -e
-          RESULTS="data/raw/weekly/results_${{ steps.mode.outputs.league }}.json"
-          N=$(python -c "import json; print(len(json.load(open('$RESULTS'))))")
-          echo "Recent results: $N"
-          if [ "$N" = "0" ]; then
-            echo "No recent results — skip learn"
-            exit 0
-          fi
-          python tools/weekly_pipeline.py learn "$RESULTS" \
-            --model data/models/oracle_en1_2024-25.json
+          RES="data/raw/weekly/results_${{ matrix.league }}.json"
+          N=$(python -c "import json; print(len(json.load(open('$RES'))))")
+          echo "${{ matrix.league }} results: $N"
+          if [ "$N" = "0" ]; then exit 0; fi
+          python tools/weekly_pipeline.py learn "$RES" \
+            --model "${{ steps.model.outputs.path }}"
 
-      - name: Commit model + weekly artifacts
+      - name: Commit updates
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/models/*.json data/raw/weekly/*.json reports/weekly_*.json || true
-          if git diff --cached --quiet; then
-            echo "Nothing to commit"
+          if git diff --cached --quiet; then echo "Nothing to commit"
           else
-            git commit -m "chore(oracle): auto weekly fetch/predict/learn"
-            git push
+            git commit -m "chore(oracle): weekly ${{ matrix.league }}"
+            git pull --rebase || true
+            git push || true
           fi
