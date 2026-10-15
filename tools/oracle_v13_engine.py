@@ -11,17 +11,45 @@ from math import exp, log, factorial
 from typing import Dict, List, Optional, Tuple
 
 OUT=('h','d','a')
+# Phase-1 improved aliases – maps common bookmaker short names to OpenFootball keys
 ALIASES={
- 'man utd':'manchester united','manchester utd':'manchester united','manchester united':'manchester united',
- 'newcastle':'newcastle united','leicester':'leicester city','wolves':'wolverhampton wanderers',
- 'brighton':'brighton hove albion','nottingham':'nottingham forest','ipswich':'ipswich town',
- 'tottenham':'tottenham hotspur','west ham':'west ham united','bournemouth':'bournemouth',
+ 'bournemouth':'bournemouth','afc bournemouth':'bournemouth',
+ 'arsenal':'arsenal',
+ 'aston villa':'aston villa','villa':'aston villa',
+ 'brentford':'brentford',
+ 'brighton':'brighton hove albion','brighton and hove albion':'brighton hove albion',
+ 'brighton hove albion':'brighton hove albion','brighton & hove albion':'brighton hove albion',
+ 'chelsea':'chelsea',
+ 'crystal palace':'crystal palace','palace':'crystal palace',
+ 'everton':'everton',
+ 'fulham':'fulham',
+ 'ipswich':'ipswich town','ipswich town':'ipswich town',
+ 'leicester':'leicester city','leicester city':'leicester city',
+ 'liverpool':'liverpool',
+ 'manchester city':'manchester city','man city':'manchester city','mancity':'manchester city',
+ 'manchester united':'manchester united','manchester utd':'manchester united',
+ 'man utd':'manchester united','man united':'manchester united','manu':'manchester united',
+ 'newcastle':'newcastle united','newcastle united':'newcastle united','newcastle utd':'newcastle united',
+ 'nottingham forest':'nottingham forest','nottingham':'nottingham forest','notts forest':'nottingham forest',
+ 'forest':'nottingham forest','nott m forest':'nottingham forest','nottm forest':'nottingham forest',
+ 'southampton':'southampton','saints':'southampton',
+ 'tottenham':'tottenham hotspur','tottenham hotspur':'tottenham hotspur','spurs':'tottenham hotspur',
+ 'west ham':'west ham united','west ham united':'west ham united','westham':'west ham united',
+ 'wolves':'wolverhampton wanderers','wolverhampton':'wolverhampton wanderers',
+ 'wolverhampton wanderers':'wolverhampton wanderers',
 }
 def normalize_team(s):
  s=str(s or '').lower().replace('&','and')
+ import re as _re
+ s=_re.sub(r'\([^)]*\)','',s)
  for x in ('afc ',' fc',' cf',' sc'): s=s.replace(x,' ')
  s=' '.join(''.join(c if c.isalnum() or c==' ' else ' ' for c in s).split())
- return ALIASES.get(s,s)
+ if s in ALIASES: return ALIASES[s]
+ parts=s.split()
+ for i in range(len(parts),0,-1):
+  cand=' '.join(parts[:i])
+  if cand in ALIASES: return ALIASES[cand]
+ return s
 def match_id(league,season,home,away,kickoff):
  return '|'.join((str(league),str(season),normalize_team(home),normalize_team(away),str(kickoff)[:10]))
 def poisson(k,l): return exp(-l)*l**k/factorial(k)
