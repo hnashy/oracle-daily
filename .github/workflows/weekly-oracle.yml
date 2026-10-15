@@ -2,37 +2,48 @@ name: ORACLE Weekly Predict + Learn
 
 on:
   schedule:
-    # Saturday 09:00 UTC — weekly predictions before weekend fixtures
+    # Saturday 09:00 UTC — auto-fetch fixtures + predict + Telegram
     - cron: "0 9 * * 6"
-    # Monday 10:00 UTC — post-weekend learn reminder / optional learn job
+    # Monday 10:00 UTC — auto-fetch results + learn + save model
     - cron: "0 10 * * 1"
   workflow_dispatch:
     inputs:
       mode:
         description: "predict | learn | both"
         required: true
-        default: predict
+        default: both
         type: choice
         options:
           - predict
           - learn
           - both
       league:
-        description: "League key (en.1 = EPL for now)"
+        description: "League key"
         required: true
         default: en.1
+        type: choice
+        options:
+          - en.1
+          - es.1
+          - it.1
+          - de.1
+          - fr.1
       week_label:
-        description: "Label for Telegram report (e.g. MW10)"
+        description: "Telegram label"
         required: false
         default: "Matchweek"
       send_telegram:
-        description: "Send report to Telegram"
+        description: "Send Telegram report"
         required: false
         default: "true"
         type: choice
         options:
           - "true"
           - "false"
+      season:
+        description: "OpenFootball season folder (auto = detect)"
+        required: false
+        default: auto
 
 jobs:
   weekly:
@@ -52,11 +63,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Resolve mode (schedule vs manual)
+      - name: Resolve mode
         id: mode
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            DOW=$(date -u +%u)  # 1=Mon ... 6=Sat
+            DOW=$(date -u +%u)
             if [ "$DOW" = "6" ]; then
               echo "mode=predict" >> $GITHUB_OUTPUT
             else
@@ -68,76 +79,77 @@ jobs:
           echo "league=${{ inputs.league || 'en.1' }}" >> $GITHUB_OUTPUT
           echo "week=${{ inputs.week_label || 'Matchweek' }}" >> $GITHUB_OUTPUT
           echo "telegram=${{ inputs.send_telegram || 'true' }}" >> $GITHUB_OUTPUT
+          echo "season=${{ inputs.season || 'auto' }}" >> $GITHUB_OUTPUT
 
-      - name: Ensure model + paths
+      - name: Ensure model exists
         run: |
           mkdir -p data/models data/raw/weekly reports
           if [ ! -f data/models/oracle_en1_2024-25.json ]; then
-            echo "ERROR: production model missing at data/models/oracle_en1_2024-25.json"
+            echo "ERROR: missing data/models/oracle_en1_2024-25.json"
             exit 1
           fi
-          python -c "import json; d=json.load(open('data/models/oracle_en1_2024-25.json')); print('Model matches_trained:', d.get('matches_trained'))"
 
-      - name: Predict (if mode predict or both)
+      - name: Auto-fetch fixtures and results (OpenFootball)
+        run: |
+          python tools/fetch_openfootball_week.py \
+            --league "${{ steps.mode.outputs.league }}" \
+            --season "${{ steps.mode.outputs.season }}" \
+            --upcoming-days 10 \
+            --results-days 10 \
+            --out-dir data/raw/weekly
+
+      - name: Predict + Telegram
         if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
         run: |
           set -e
           FIXTURES="data/raw/weekly/fixtures_${{ steps.mode.outputs.league }}.json"
-          if [ ! -f "$FIXTURES" ]; then
-            echo "No fixtures file at $FIXTURES"
-            echo "Create it manually or via a collect-fixtures step. Sending status to Telegram."
+          N=$(python -c "import json; print(len(json.load(open('$FIXTURES'))))")
+          echo "Upcoming fixtures: $N"
+          if [ "$N" = "0" ]; then
+            echo "No upcoming fixtures in window — notify and exit successfully"
             python - <<'PY'
           import os, json, urllib.request
-          token=os.environ.get("TELEGRAM_BOT_TOKEN")
-          chat=os.environ.get("TELEGRAM_CHAT_ID")
-          text=("<b>ORACLE Weekly</b>\n"
-                "No fixtures file found.\n"
-                "Add <code>data/raw/weekly/fixtures_en.1.json</code> then re-run.")
+          token, chat = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
+          text = "<b>ORACLE Weekly</b>\nNo upcoming fixtures in the next 10 days (OpenFootball)."
           if token and chat:
-              body=json.dumps({"chat_id":chat,"text":text,"parse_mode":"HTML"}).encode()
-              req=urllib.request.Request(
+              body = json.dumps({"chat_id": chat, "text": text, "parse_mode": "HTML"}).encode()
+              urllib.request.urlopen(urllib.request.Request(
                   f"https://api.telegram.org/bot{token}/sendMessage",
-                  data=body, headers={"Content-Type":"application/json"})
-              urllib.request.urlopen(req, timeout=30)
-              print("Notified Telegram: missing fixtures")
-          else:
-              print("Telegram secrets missing")
+                  data=body, headers={"Content-Type": "application/json"}), timeout=30)
           PY
             exit 0
           fi
-
-          TG_FLAG=""
-          if [ "${{ steps.mode.outputs.telegram }}" = "true" ]; then
-            TG_FLAG="--telegram"
-          fi
-
+          TG=""
+          if [ "${{ steps.mode.outputs.telegram }}" = "true" ]; then TG="--telegram"; fi
           python tools/weekly_pipeline.py predict "$FIXTURES" \
             --model data/models/oracle_en1_2024-25.json \
             --out "reports/weekly_${{ steps.mode.outputs.league }}.json" \
             --league "${{ steps.mode.outputs.league }}" \
             --week "${{ steps.mode.outputs.week }}" \
-            $TG_FLAG
+            $TG
 
-      - name: Learn (if mode learn or both)
+      - name: Learn from recent results
         if: steps.mode.outputs.mode == 'learn' || steps.mode.outputs.mode == 'both'
         run: |
           set -e
           RESULTS="data/raw/weekly/results_${{ steps.mode.outputs.league }}.json"
-          if [ ! -f "$RESULTS" ]; then
-            echo "No results file at $RESULTS — skip learn"
+          N=$(python -c "import json; print(len(json.load(open('$RESULTS'))))")
+          echo "Recent results: $N"
+          if [ "$N" = "0" ]; then
+            echo "No recent results — skip learn"
             exit 0
           fi
           python tools/weekly_pipeline.py learn "$RESULTS" \
             --model data/models/oracle_en1_2024-25.json
 
-      - name: Commit updated model / reports
+      - name: Commit model + weekly artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/models/*.json reports/weekly_*.json || true
+          git add data/models/*.json data/raw/weekly/*.json reports/weekly_*.json || true
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "chore(oracle): weekly pipeline update"
+            git commit -m "chore(oracle): auto weekly fetch/predict/learn"
             git push
           fi
