@@ -1,0 +1,989 @@
+{
+  "total_errors": 164,
+  "errors": [
+    {
+      "home": "Tottenham",
+      "away": "Brighton",
+      "match_date": "2025-05-25 15:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Liverpool",
+      "match_date": "2025-05-19 19:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Wolves",
+      "away": "Brighton",
+      "match_date": "2025-05-10 14:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Newcastle",
+      "match_date": "2025-05-04 13:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Aston Villa",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Everton",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Southampton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Liverpool",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Brentford",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Southampton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Aston Villa",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Everton",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Brentford",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Brighton",
+      "match_date": "2025-03-15 15:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Fulham",
+      "match_date": "2025-03-08 15:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Bournemouth",
+      "match_date": "2025-02-25 19:30:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Southampton",
+      "away": "Brighton",
+      "match_date": "2025-02-22 15:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Chelsea",
+      "match_date": "2025-02-14 20:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Brighton",
+      "match_date": "2025-02-01 12:30:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Fulham",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Aston Villa",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Brentford",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Everton",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Southampton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Southampton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Everton",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Aston Villa",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "Brentford",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Aston Villa",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Southampton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Everton",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Brentford",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Everton",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Southampton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Aston Villa",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "West Ham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Brentford",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Southampton",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Manchester Utd",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Crystal Palace",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Nottingham Forest",
+      "away": "Aston Villa",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Everton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Fulham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Wolves",
+      "away": "Ipswich",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Leicester",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "West Ham",
+      "away": "Wolves",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Tottenham",
+      "away": "Chelsea",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Arsenal",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Ipswich",
+      "away": "Bournemouth",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Leicester",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Manchester Utd",
+      "away": "Nottingham Forest",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brentford",
+      "away": "Newcastle",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Crystal Palace",
+      "away": "Manchester City",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Tottenham",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Fulham",
+      "away": "Brighton",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Liverpool",
+      "match_date": null,
+      "reason": "missing_match_date"
+    },
+    {
+      "home": "Brighton",
+      "away": "Southampton",
+      "match_date": "2024-11-29 20:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Bournemouth",
+      "away": "Brighton",
+      "match_date": "2024-11-23 15:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Manchester City",
+      "match_date": "2024-11-09 17:30:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Liverpool",
+      "away": "Brighton",
+      "match_date": "2024-11-02 15:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Wolves",
+      "match_date": "2024-10-26 14:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Newcastle",
+      "away": "Brighton",
+      "match_date": "2024-10-19 14:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Tottenham",
+      "match_date": "2024-10-06 15:30:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Chelsea",
+      "away": "Brighton",
+      "match_date": "2024-09-28 14:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Nottingham",
+      "match_date": "2024-09-22 13:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Ipswich",
+      "match_date": "2024-09-14 14:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Brighton",
+      "match_date": "2024-08-31 11:30:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Brighton",
+      "away": "Manchester Utd",
+      "match_date": "2024-08-24 11:30:00 UTC",
+      "reason": "no_model_fixture_match"
+    },
+    {
+      "home": "Everton",
+      "away": "Brighton",
+      "match_date": "2024-08-17 14:00:00 UTC",
+      "reason": "no_model_fixture_match"
+    }
+  ]
+}

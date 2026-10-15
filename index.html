@@ -1565,7 +1565,7 @@ function contextualFeatures(all,m){
   const rankSignal=hs&&as?Math.max(-1,Math.min(1,(as.rank-hs.rank)/Math.max(5,table.size/2))):0;
   const h2h=headToHead(all,m.h,m.a,before);
   const h2hSignal=h2h.n>=3?h2h.signal:0;
-  const signal=Math.max(-1,Math.min(1,0.55*(hf.signal-af.signal)+0.30*rankSignal+0.15*h2hSignal));
+  const signal=Math.max(-1,Math.min(1,0.60*(hf.signal-af.signal)+0.35*rankSignal+0.05*h2hSignal));
   return {home: m.h,away:m.a,homeForm:hf,awayForm:af,homeStandings:hs||null,awayStandings:as||null,h2h,rankSignal,signal};
 }
 function adjustEloWithContext(p,ctx){
@@ -1649,7 +1649,13 @@ function predictMatch(state,m){
   const ra=decayElo(ea.away,ea.last?(now-ea.last)/DAY:0);
   const eloP=adjustEloWithContext(probsFromExpect(eloExpect(rh,ra,HFA),rh,ra,HFA),contextualFeatures(S.all,m));
   const dcP=dixonColesProbs(state.acc.get(m.h)||emptyAcc(),state.acc.get(m.a)||emptyAcc(),state.lg,state.rho);
-  return calculateEnsemblePrediction(eloP,dcP,state.w);
+  const base=calculateEnsemblePrediction(eloP,dcP,state.w);
+  const market=oddsForMatch(m);
+  if(market&&market.odds){
+    const q=marketProbabilities(market.odds), mw=0.60;
+    return Object.assign({},base,{h:(1-mw)*base.h+mw*q.h,d:(1-mw)*base.d+mw*q.d,a:(1-mw)*base.a+mw*q.a,we:base.we,wd:base.wd,marketWeight:mw});
+  }
+  return base;
 }
 
 const S={all:[],cur:0,from:'live',at:0,notes:[],dates:[],rounds:[],idx:0,preds:{},state:null,bt:null,busy:false,robust:null,robBusy:false,league:'en.1',odds:{}};
